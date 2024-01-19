@@ -704,7 +704,7 @@ export class SubmitGAR extends Component {
                                             <td className="border"> {value.status} </td>
                                         </tr> : <tr key={ndx}></tr>
                                     )}
-                                    <tr>
+                                    <tr className='break-before-page'>
                                         <td className="border text-center fw-bold" colSpan={12}> ATTRIBUTED PROGRAM </td>
                                     </tr>
                                     {Attrib.map((attribs, index) =>
@@ -755,7 +755,7 @@ export class SubmitGAR extends Component {
                                 <div className="flex justify-content-start">
                                     Prepared by:
                                 </div>
-                                <div className="flex justify-content-evenly">
+                                <div className="flex justify-content-evenly mt-5">
                                     <div className="w-25">
                                         {signatories.GAD_Secretariat}
                                         <div className="text-base"> GAD Secretariat </div>
@@ -769,7 +769,7 @@ export class SubmitGAR extends Component {
                                 <div className="flex justify-content-center">
                                     Approved by:
                                 </div>
-                                <div className="flex justify-content-center ">
+                                <div className="flex justify-content-center mt-5">
                                     <div>
                                         {signatories.Executive_Committee_Chairperson}
                                         <div className="text-base"> Director, DOST-SEI </div>

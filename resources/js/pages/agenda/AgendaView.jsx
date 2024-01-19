@@ -370,7 +370,7 @@ export class AgendaView extends Component {
                         </div>
                     </div>
                     <hr />
-                    <div className="m-3 text-lg">
+                    <div className="m-3 text-lg break-before-page">
                         <div className="px-2">
                             <div className="text-end text-sm">
                                 <p className="m-0 ">
@@ -489,11 +489,11 @@ export class AgendaView extends Component {
                             Prepared by:
                         </div>
                         <div className="flex justify-content-evenly">
-                            <div className="w-25">
+                            <div className="w-25 mt-5">
                                 {signatories.GAD_Secretariat}
                                 <div className="text-base"> GAD Secretariat </div>
                             </div>
-                            <div className="w-25">
+                            <div className="w-25 mt-5">
                                 {signatories.TWG_Chairperson}
                                 <div className="text-base"> GAD TWG Chairperson </div>
                             </div>
@@ -502,7 +502,7 @@ export class AgendaView extends Component {
                         <div className="flex justify-content-center">
                             Approved by:
                         </div>
-                        <div className="flex justify-content-center ">
+                        <div className="flex justify-content-center mt-5">
                             <div>
                                 {signatories.Executive_Committee_Chairperson}
                                 <div className="text-base"> Director, DOST-SEI </div>

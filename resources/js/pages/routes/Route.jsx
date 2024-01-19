@@ -126,7 +126,7 @@ const routes = [
     { path:"/Admin/Gallery", exact: true,  name: "Admin", component: AdminGallery },
 
     //TRAINING MODULE
-    { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },
+    // { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },
 ]
 
 export default routes

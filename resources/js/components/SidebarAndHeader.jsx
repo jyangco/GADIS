@@ -233,7 +233,7 @@ function SidebarAndHeader() {
                     </button>
                 )}
             </NavLink>
-            <NavLink  onClick={handleNotReady} id={7} to={"/#"} className={UserRole == 'admin' ? "no-underline" : "d-none"}>
+            <NavLink onClick={handleNotReady} id={7} to={"/#"} className={UserRole == 'admin' ? "no-underline" : "d-none"}>
                 {({ isActive }) => ( isActive ?
                     <span className="flex bg-white text-purple">
                         <i className="fas fa-bookmark fa-2x text-purple"></i> 
@@ -341,7 +341,7 @@ function SidebarAndHeader() {
                     </button>
                 )}
             </NavLink>
-            <NavLink id={12} to={"/Training-Module"} className={UserRole == 'admin' ? "no-underline" : "no-underline"}>
+            <NavLink onClick={handleNotReady} id={12} to={"/#"} className={UserRole == 'admin' ? "no-underline" : "no-underline"}>
                 {({ isActive }) => ( isActive ?
                     <span className="flex bg-white text-purple">
                         <i className="fas fa-bookmark fa-2x text-purple"></i> 
