@@ -143,6 +143,9 @@ export class Annex_A extends Component {
                 </Link>
                 <div className="text-center text-3xl mobile-lg:text-lg"> New GAD Agenda (Annex A)  </div>
                 <div className="p-5 mobile-lg:!p-2">
+                    <div className="text-base fw-bold">
+                        <p> (<span className="text-danger">*</span>) <span className="text-danger"> Required Fields </span> </p>
+                    </div>
                     <div className="flex shadow text-lg container col-10 justify-evenly rounded rounded-pill p-4 my-3 bg-[#FBE7C6]">
                         <div className="form-group m-0">
                             {this.state.start_year.length == 0 ?
@@ -161,6 +164,10 @@ export class Annex_A extends Component {
                                     <option className='text-center' key={i} value={val}> {val} </option>
                                 )}
                             </select>
+                            {this.state.start_year.length == 0 ?
+                                <span className="text-xl text-danger"> * </span> :
+                                ""
+                            }
                         </div>
                         <div className="form-group m-0">
                             {this.state.end_year.length == 0 ?
@@ -179,6 +186,10 @@ export class Annex_A extends Component {
                                     <option className='text-center' key={i} value={val}> {val} </option>
                                 ))}
                             </select>
+                            {this.state.end_year.length == 0 ?
+                                <span className="text-xl text-danger"> * </span> :
+                                ""
+                            }
                         </div>
                     </div>
                     <div className='text-lg text-primary mobile-lg:text-base'> I. <span className="ms-5"> GAD Strategic Framework </span>  </div>
@@ -214,7 +225,13 @@ export class Annex_A extends Component {
                                     <tbody>
                                         <tr>
                                             <td className='px-5 py-3'>
-                                                <strong> GAD Vision: </strong>
+                                                <strong>
+                                                    GAD Vision: 
+                                                    {this.state.GAD_vision.length == 0 ?
+                                                        <span className="text-xl text-danger"> * </span> :
+                                                        ""
+                                                    } 
+                                                </strong>
                                                 {this.state.GAD_vision.length == 0 ?
                                                     <span className="text-xs text-danger"> { this.state.error_list } </span> :
                                                     ""
@@ -231,7 +248,13 @@ export class Annex_A extends Component {
                                     <tbody>
                                         <tr>
                                             <td className='px-5 py-3'> 
-                                                <strong> GAD Mission: </strong>
+                                                <strong>
+                                                    GAD Mission: 
+                                                    {this.state.GAD_mission.length == 0 ?
+                                                        <span className="text-xl text-danger"> * </span> :
+                                                        ""
+                                                    }
+                                                </strong>
                                                 {this.state.GAD_mission.length == 0 ?
                                                     <span className="text-xs text-danger"> { this.state.error_list } </span> :
                                                     ""

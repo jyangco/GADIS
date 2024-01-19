@@ -14,6 +14,7 @@ use App\Models\AnnexA;
 use App\Models\AnnexB;
 use App\Models\AnnexBGoals;
 use App\Models\ActivityDetails;
+use App\Models\ResPub;
 
 class AdminController extends Controller
 {
@@ -398,12 +399,18 @@ class AdminController extends Controller
         ]);
     }
 
+    //deleting images
     public function deleteImage($id){
         DB::table('images')->where('image_id', $id)->delete();
         return response()->json([
             'message' => 'File Deleted',
             'status' => 200
         ]);
+    }
+
+    //getting resources and publications
+    public function getResPubs(){
+        
     }
 //end of file
 }

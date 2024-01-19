@@ -65,6 +65,9 @@ import AdminReports from '../admin/pages/Reports'
 import AdminResPubs from '../admin/pages/ResourcesPublications'
 import AdminGallery from '../admin/pages/Gallery'
 
+//TRAINING MODULE
+import TrainingModule from '../modules/TrainingModule'
+
 const routes = [
     { path: "/", exact: true, name: "Login", component: Index },
     { path: "/dashboard", exact: true, name: "Dashboard", component: Dashboard },
@@ -109,7 +112,7 @@ const routes = [
     //USER
     { path: "/My-profile", exact: true, name: "User", component: UserProfile },
     //TRAINING
-    { path: "/Training", exact: true, name: "User", component: TrainingList },
+    // { path: "/Training", exact: true, name: "User", component: TrainingList },
     { path:"*",  name: "NotAuthorized", component: NotFound },
 
     //ADMIN
@@ -121,6 +124,9 @@ const routes = [
     { path:"/Admin/Reports", exact: true,  name: "Admin", component: AdminReports },
     { path:"/Admin/Resources-and-Publications", exact: true,  name: "Admin", component: AdminResPubs },
     { path:"/Admin/Gallery", exact: true,  name: "Admin", component: AdminGallery },
+
+    //TRAINING MODULE
+    { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },
 ]
 
 export default routes

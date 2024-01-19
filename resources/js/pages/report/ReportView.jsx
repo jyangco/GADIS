@@ -27,7 +27,7 @@ export class ReportView extends Component {
             Attribbudgets: [],
             signatories: "",
             user_title: "",
-            view: "SDD"
+            view: ""
         }
     }
 
@@ -138,7 +138,7 @@ export class ReportView extends Component {
                                         </button>
                                     </div> : ""
                                 }
-                                {user_title.position_name == 'GAD Secretariat' ? 
+                                {/* {user_title.position_name == 'GAD Secretariat' ? 
                                     <div className="w-25 text-center">
                                         <button className="border-dark p-3 hover:bg-slate-100 hover:rounded"
                                             onClick={this.handleSelectMAR}
@@ -146,7 +146,7 @@ export class ReportView extends Component {
                                             MAR
                                         </button>
                                     </div> : ""
-                                }
+                                } */}
                             </div>
                         </div>
                     </div>

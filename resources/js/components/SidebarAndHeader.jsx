@@ -233,7 +233,7 @@ function SidebarAndHeader() {
                     </button>
                 )}
             </NavLink>
-            <NavLink id={7} to={"/Training"} className={UserRole == 'admin' ? "no-underline" : "d-none"}>
+            <NavLink  onClick={handleNotReady} id={7} to={"/#"} className={UserRole == 'admin' ? "no-underline" : "d-none"}>
                 {({ isActive }) => ( isActive ?
                     <span className="flex bg-white text-purple">
                         <i className="fas fa-bookmark fa-2x text-purple"></i> 
@@ -341,7 +341,7 @@ function SidebarAndHeader() {
                     </button>
                 )}
             </NavLink>
-            <NavLink onClick={handleNotReady} id={12} to={"/#"} className={UserRole == 'admin' ? "no-underline" : "no-underline"}>
+            <NavLink id={12} to={"/Training-Module"} className={UserRole == 'admin' ? "no-underline" : "no-underline"}>
                 {({ isActive }) => ( isActive ?
                     <span className="flex bg-white text-purple">
                         <i className="fas fa-bookmark fa-2x text-purple"></i> 
@@ -378,7 +378,7 @@ function SidebarAndHeader() {
 
     return (
         <div className="mobile-lg:block flex">
-            <nav className="row fixed top-0 z-998 align-items-center border-b-4 border-dark header bg-purple p-0 m-0 w-full h-14 mobile-lg:h-[150px]">
+            <nav className="row fixed top-0 z-999 align-items-center border-b-4 border-t-2 border-dark header bg-purple p-0 m-0 w-full h-14 mobile-lg:h-[150px]">
                 <div onClick={showSidebar}
                     className="hidden mobile-lg:block absolute w-fit start-0 top-25 text-3xl text-white">
                     <i className="fad fa-arrow-to-right"></i>

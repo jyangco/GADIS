@@ -171,6 +171,16 @@ export class NewReport extends Component {
                 <div className="p-5">
                     <form className="createForms text-lg" onSubmit={this.handleSubmitForm}>
                         <div className="d-flex justify-content-center">
+                            {disabled == true ?
+                                <div className="text-danger text-base fw-bold">
+                                    <p> *This Field is Required First </p>
+                                </div> : 
+                                <div className="text-base fw-bold">
+                                    <p> (<span className="text-danger">*</span>) <span className="text-danger"> Required Fields </span> </p>
+                                </div>
+                            }
+                        </div>
+                        <div className="d-flex justify-content-center">
                             <div className="form-group my-3">
                                 <label> Report Type: </label>
                                 <select
