@@ -256,16 +256,21 @@ export class UserManagement extends Component {
                                         <td className="border p-2 w-[28%] text-start"> {val.name} </td>
                                         <td className="border p-2 w-[28%] text-start"> {val.email} </td>
                                         <td className="border p-2 w-[29%] text-start"> 
-                                            {val.position_name == "GAD Staff" && val.isTWG == true ? 
+                                            {val.position_name == "TWG Member" && val.isTWG == true ? 
                                                 <div className="contents"> GAD TWG Member </div> :
                                             val.position_name == "GAD Staff" && val.isTWG == false ?
                                                 <div className="contents"> {val.position_name} </div> : 
                                             val.position_name == "GAD Secretariat" ?
                                                 <div className="contents"> {val.position_name} </div> :
-                                            val.isTWG == false ? 
-                                                <div className="contents"> GAD {val.position_name}person </div> : 
                                             val.position_name == "TWG Chair" ?
-                                                <div className="contents"> GAD {val.position_name}person </div> : ""
+                                                <div className="contents"> GAD {val.position_name}person </div> : 
+                                            val.position_name == "Executive Committee Chair" ?
+                                                <div className="contents"> GAD {val.position_name}person </div> :
+                                            val.position_name == "TWG Member" && val.isTWG == false ? 
+                                                <div className="contents"> {val.position_name}
+                                                    <span className="text-red-500"> (TWG is set to FALSE) </span> 
+                                                </div> : 
+                                                <div className="contents"> {val.position_name} </div>
                                             }
                                         </td>
                                         <td className="border p-2 w-[10%] text-start">

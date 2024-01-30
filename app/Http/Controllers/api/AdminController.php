@@ -423,6 +423,7 @@ class AdminController extends Controller
                 ->join('user_roles', 'user_roles.user_id', '=', 'users.id')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
                 ->join('positions', 'positions.position_id', '=', 'user_profiles.position_id')
+                ->orderBy('positions.position_id')
                 ->orderBy('id')
                 ->get();
         $positions = DB::table('positions')
