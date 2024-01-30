@@ -220,3 +220,25 @@ tr{ page-break-inside:avoid; page-break-after:auto }
 .remove-arrow {
     -moz-appearance: textfield;
 }
+
+.btn-edt:hover {
+    background: rgb(22 163 74);
+    cursor: pointer;
+}
+
+.btn-del:hover, .btn-cnl:hover {
+    background: rgb(220 38 38);
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background: rgb(2 132 199);
+    cursor: pointer;
+}
+
+.btn-del:hover i, 
+.btn-edt:hover i, 
+.btn-add:hover i,
+.btn-cnl:hover i {
+    color: #fff;
+}

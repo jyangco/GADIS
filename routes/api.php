@@ -129,6 +129,8 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/getPPADetails/{id}', 'App\Http\Controllers\api\AdminController@getPPADetails'); 
     Route::get('/getReports', 'App\Http\Controllers\api\AdminController@getReports'); 
     Route::get('/getImages', 'App\Http\Controllers\api\AdminController@getImages'); 
+    Route::get('/getUsers', 'App\Http\Controllers\api\AdminController@getUsers'); 
+    Route::get('/getSingleUser/{id}', 'App\Http\Controllers\api\AdminController@getSingleUser');
     
     Route::post('/getGADAgenda', 'App\Http\Controllers\api\AdminController@getGADAgenda');
     Route::post('/updateAnnexA', 'App\Http\Controllers\api\AdminController@updateAnnexA');
@@ -136,8 +138,11 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/updateAnnexB', 'App\Http\Controllers\api\AdminController@updateAnnexB');
     Route::post('/getPPAperYear', 'App\Http\Controllers\api\AdminController@getPPAperYear');
     Route::post('/updatePPADetails', 'App\Http\Controllers\api\AdminController@updatePPADetails');
+    Route::post('/newUser', 'App\Http\Controllers\api\AdminController@newUser');
+    Route::post('/updateUser', 'App\Http\Controllers\api\AdminController@updateUser');
 
     Route::delete('/deleteImage/{id}', 'App\Http\Controllers\api\AdminController@deleteImage');
+    Route::delete('/deleteUser/{id}', 'App\Http\Controllers\api\AdminController@deleteUser');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

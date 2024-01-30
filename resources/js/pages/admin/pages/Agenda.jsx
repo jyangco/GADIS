@@ -181,7 +181,7 @@ export class Agenda extends Component {
                             value={this.state.aa_id}
                             onChange={this.handleYearChange}
                         >
-                            <option className="text-center" value={""} > -- Select Value -- </option>
+                            {/* <option className="text-center" value={""} > -- Select Value -- </option> */}
                             {years.map((val,i) => 
                                 <option className="text-center" value={val.aa_id} key={i}> {val.start_year} - {val.end_year} </option>
                             )}

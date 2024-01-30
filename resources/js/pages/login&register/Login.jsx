@@ -214,7 +214,7 @@ function Login() {
                                                 />
                                             </div>
                                         </div>
-                                        <span className="text-danger"> {loginInput.error_list.admin_password} </span>
+                                        <span className="text-danger"> {loginInput.error_list.password} </span>
                                     </div>
                                     <div className="flex justify-content-center">
                                         <button type="submit" className="mt-3 rounded-full bg-slate-500 text-slate-50 hover:bg-slate-100 hover:text-slate-950">
@@ -254,7 +254,7 @@ function Login() {
                                                 />
                                             </div>
                                         </div>
-                                        <span className="text-danger"> {adminLoginInput.admin_error_list.password} </span>
+                                        <span className="text-danger"> {adminLoginInput.admin_error_list.admin_password} </span>
                                     </div>
                                     <div className="flex justify-content-center">
                                         <button type="submit" className="mt-3 rounded-full bg-slate-500 text-slate-50 hover:bg-slate-100 hover:text-slate-950">

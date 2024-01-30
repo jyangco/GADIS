@@ -217,7 +217,7 @@ function SidebarAndHeader() {
                     </button>
                 )}
             </NavLink>
-            <NavLink id={6} to={"/Reports"} className={UserRole == 'admin' ? "no-underline mobile-lg:!hidden" : "d-none mobile-lg:!hidden"}>
+            <NavLink id={6} to={"/Reports"} className={UserRole == 'admin' ? "no-underline mobile-lg:!hidden" : "d-underline mobile-lg:!hidden"}>
                 {({ isActive }) => ( isActive ?
                     <span className="flex bg-white text-purple">
                         <i className="fas fa-bookmark fa-2x text-purple"></i> 

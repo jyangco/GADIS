@@ -15,6 +15,9 @@ use App\Models\AnnexB;
 use App\Models\AnnexBGoals;
 use App\Models\ActivityDetails;
 use App\Models\ResPub;
+use App\Models\User;
+use App\Models\UserRole;
+use App\Models\UserProfile;
 
 class AdminController extends Controller
 {
@@ -410,7 +413,137 @@ class AdminController extends Controller
 
     //getting resources and publications
     public function getResPubs(){
-        
+        #code here..
+    }
+
+    //getting the users and the saved user positions
+    public function getUsers(){
+        $users = DB::table('users')
+                ->select( 'id','name','email','user_role','isTWG','position_name')
+                ->join('user_roles', 'user_roles.user_id', '=', 'users.id')
+                ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+                ->join('positions', 'positions.position_id', '=', 'user_profiles.position_id')
+                ->orderBy('id')
+                ->get();
+        $positions = DB::table('positions')
+                    ->select('position_id', 'position_name')
+                    ->get();
+        return response()->json([
+            'users' => $users,
+            'positions' => $positions
+        ]);
+    }
+
+    //saving new user
+    public function newUser(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                "emp_name" => "required",
+                "emp_email" => "required",
+                "emp_role" => "required",
+                "emp_position" => "required",
+                "twg" => "required",
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                $newUser = User::create([
+                    'name' => $request->emp_name,
+                    'email' => $request->emp_email,
+                    'password' => Hash::make('password'),
+                ]);
+                $newUserRole = UserRole::create([
+                    'user_id' => $newUser->id,
+                    'user_role' => $request->emp_role,
+                    'isTWG' => $request->twg,
+                ]);
+                $newUserProfile = UserProfile::create([
+                    'user_id' => $newUser->id,
+                    'position_id' => $request->emp_position
+                ]);
+                return response()->json([
+                    'status' => 200,
+                    "message" => "Success!"
+                ]);
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
+    }
+
+    //getting single user
+    public function getSingleUser($id){
+        $user = DB::table('users')
+                ->select( 'id','name','email','user_role','isTWG','position_name', 'positions.position_id')
+                ->join('user_roles', 'user_roles.user_id', '=', 'users.id')
+                ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+                ->join('positions', 'positions.position_id', '=', 'user_profiles.position_id')
+                ->find($id);
+        return $user;
+    }
+
+    //edit user
+    public function updateUser(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                "emp_id" => "required",
+                "emp_name" => "required",
+                "emp_email" => "required",
+                "emp_role" => "required",
+                "emp_position" => "required",
+                "twg" => "required",
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                DB::table('users')
+                ->where('id', $request->emp_id)
+                ->update([
+                    'name' => $request->emp_name ,
+                    'email' => $request->emp_email
+                ]);
+                DB::table('user_profiles')
+                ->where('user_id', $request->emp_id)
+                ->update([
+                    'position_id' => $request->emp_position
+                ]);
+                DB::table('user_roles')
+                ->where('user_id', $request->emp_id)
+                ->update([
+                    'user_role' => $request->emp_role,
+                    'isTWG' => $request->twg
+                ]);
+                return response()->json([
+                    'status' => 200,
+                    "message" => "Success!"
+                ]);
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
+    }
+
+    //delete user 
+    public function deleteUser($id){
+        DB::table('users')->where('id', $id)->delete();
+        DB::table('user_roles')->where('user_id', $id)->delete();
+        DB::table('user_profiles')->where('user_id', $id)->delete();
+        return response()->json([
+            'message' => 'User Deleted',
+            'status' => 200
+        ]);
     }
 //end of file
 }

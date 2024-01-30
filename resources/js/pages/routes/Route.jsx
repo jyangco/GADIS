@@ -64,6 +64,7 @@ import AdminSinglePPA from '../admin/pages/SinglePPA'
 import AdminReports from '../admin/pages/Reports'
 import AdminResPubs from '../admin/pages/ResourcesPublications'
 import AdminGallery from '../admin/pages/Gallery'
+import UserManagement from "../admin/pages/UserManagement"
 
 //TRAINING MODULE
 import TrainingModule from '../modules/TrainingModule'
@@ -124,6 +125,7 @@ const routes = [
     { path:"/Admin/Reports", exact: true,  name: "Admin", component: AdminReports },
     { path:"/Admin/Resources-and-Publications", exact: true,  name: "Admin", component: AdminResPubs },
     { path:"/Admin/Gallery", exact: true,  name: "Admin", component: AdminGallery },
+    { path:"/Admin/User-Management", exact: true,  name: "Admin", component: UserManagement },
 
     //TRAINING MODULE
     // { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },

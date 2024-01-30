@@ -228,7 +228,7 @@ export class Index extends Component {
                         <div className="text-center text-3xl mb-3"> <i className="far fa-user-clock"></i> User Log </div>
                         <div className="max-h-[460px] overflow-auto">
                             <table className="table">
-                                <thead id="adminHeader" className='text-white'>
+                                <thead id="adminHeader" className='text-white sticky top-0'>
                                     <tr>
                                         <th className="border-x border-l-0 text-center rounded-tl-lg w-[65%]"> Email </th>
                                         <th className="border-x border-r-0 text-center rounded-tr-lg w-[35%]"> Date </th>
