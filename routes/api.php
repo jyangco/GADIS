@@ -49,9 +49,9 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/getAttrib', 'App\Http\Controllers\api\PPAController@getAttrib');
     Route::get('/readyToBeMarked/{id}', 'App\Http\Controllers\api\PPAController@readyToBeMarked');
     Route::get('/showDirectPPA/{id}', 'App\Http\Controllers\api\PPAController@showDirectPPA');
-    Route::get('/showAttributedPPA/{id}', 'App\Http\Controllers\API\PPAController@showAttributedPPA');
-    Route::get('/getDuplicateData', 'App\Http\Controllers\API\PPAController@getDuplicateData');
-    Route::get('/getIssues', 'App\Http\Controllers\API\PPAController@getIssues');
+    Route::get('/showAttributedPPA/{id}', 'App\Http\Controllers\api\PPAController@showAttributedPPA');
+    Route::get('/getDuplicateData', 'App\Http\Controllers\api\PPAController@getDuplicateData');
+    Route::get('/getIssues', 'App\Http\Controllers\api\PPAController@getIssues');
     Route::post('/getActPerMandates', 'App\Http\Controllers\api\PPAController@getActPerMandates');
     Route::post('/newPPA', 'App\Http\Controllers\api\PPAController@newPPA');
     Route::post('/newAttrib', 'App\Http\Controllers\api\PPAController@newAttrib');
@@ -103,21 +103,21 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/getIndividualBudget/{id}', 'App\Http\Controllers\api\BudgetController@getIndividualBudget');
     Route::get('/getBreakdowns/{id}', 'App\Http\Controllers\api\BudgetController@getBreakdowns');
     Route::get('/BudgetList', 'App\Http\Controllers\api\BudgetController@BudgetList');
-    Route::get('/budgetForNWMC', 'App\Http\Controllers\API\BudgetController@budgetForNWMC');
+    Route::get('/budgetForNWMC', 'App\Http\Controllers\api\BudgetController@budgetForNWMC');
     Route::post('/newBudget', 'App\Http\Controllers\api\BudgetController@newBudget');
-    Route::post('/budgetPerYear', 'App\Http\Controllers\API\BudgetController@budgetPerYear');
-    Route::post('/budgetPerYearAttrib', 'App\Http\Controllers\API\BudgetController@budgetPerYearAttrib');
-    Route::post('/budgetPerYearNWMC', 'App\Http\Controllers\API\BudgetController@budgetPerYearNWMC');
+    Route::post('/budgetPerYear', 'App\Http\Controllers\api\BudgetController@budgetPerYear');
+    Route::post('/budgetPerYearAttrib', 'App\Http\Controllers\api\BudgetController@budgetPerYearAttrib');
+    Route::post('/budgetPerYearNWMC', 'App\Http\Controllers\api\BudgetController@budgetPerYearNWMC');
 
     //FOR RES-PUBS
     Route::get('/getAllResPub', 'App\Http\Controllers\api\ResPubController@getAllResPub');
-    Route::post('/NewRespub', 'App\Http\Controllers\API\ResPubController@NewRespub');
+    Route::post('/NewRespub', 'App\Http\Controllers\api\ResPubController@NewRespub');
 
     //FOR GALLERY
-    Route::get('/getImagesYear', 'App\Http\Controllers\API\GalleryController@getImagesYear');
-    Route::post('/getEventCelebrations', 'App\Http\Controllers\API\GalleryController@getEventCelebrations');
-    Route::post('/getCelebrationPictures', 'App\Http\Controllers\API\GalleryController@getCelebrationPictures');
-    Route::post('/uploadImages', 'App\Http\Controllers\API\GalleryController@uploadImages');
+    Route::get('/getImagesYear', 'App\Http\Controllers\api\GalleryController@getImagesYear');
+    Route::post('/getEventCelebrations', 'App\Http\Controllers\api\GalleryController@getEventCelebrations');
+    Route::post('/getCelebrationPictures', 'App\Http\Controllers\api\GalleryController@getCelebrationPictures');
+    Route::post('/uploadImages', 'App\Http\Controllers\api\GalleryController@uploadImages');
 
     //ADMIN
     Route::get('/getLogins', 'App\Http\Controllers\api\AdminController@getLogins');
@@ -131,6 +131,9 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/getImages', 'App\Http\Controllers\api\AdminController@getImages'); 
     Route::get('/getUsers', 'App\Http\Controllers\api\AdminController@getUsers'); 
     Route::get('/getSingleUser/{id}', 'App\Http\Controllers\api\AdminController@getSingleUser');
+    Route::get('/getEmployees', 'App\Http\Controllers\api\AdminController@getEmployees'); 
+    Route::get('/getSingleEmployee/{id}', 'App\Http\Controllers\api\AdminController@getSingleEmployee'); 
+    Route::get('/getEmployeeWithoutAccnt', 'App\Http\Controllers\api\AdminController@getEmployeeWithoutAccnt'); 
     
     Route::post('/getGADAgenda', 'App\Http\Controllers\api\AdminController@getGADAgenda');
     Route::post('/updateAnnexA', 'App\Http\Controllers\api\AdminController@updateAnnexA');
@@ -140,6 +143,8 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/updatePPADetails', 'App\Http\Controllers\api\AdminController@updatePPADetails');
     Route::post('/newUser', 'App\Http\Controllers\api\AdminController@newUser');
     Route::post('/updateUser', 'App\Http\Controllers\api\AdminController@updateUser');
+    Route::post('/newEmployee', 'App\Http\Controllers\api\AdminController@newEmployee');
+    Route::post('/updateEmployee', 'App\Http\Controllers\api\AdminController@updateEmployee');
 
     Route::delete('/deleteImage/{id}', 'App\Http\Controllers\api\AdminController@deleteImage');
     Route::delete('/deleteUser/{id}', 'App\Http\Controllers\api\AdminController@deleteUser');

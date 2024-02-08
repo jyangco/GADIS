@@ -13,21 +13,27 @@ export class UserManagement extends Component {
             formPart: "one",
             users: [],
             positions: [],
+            employees: [],
             emp_id: "",
             emp_name: "",
             emp_email: "",
             emp_role: "",
             emp_position: "",
-            twg: false
+            twg: false,
+            password: "password"
         }
     }
 
     fetchData = async() => {
         try {
-            const result = await axios.get(`/api/getUsers`)
+            const result1 = await axios.get(`/api/getUsers`)
             this.setState({
-                users: result.data.users,
-                positions: result.data.positions,
+                users: result1.data.users,
+                positions: result1.data.positions
+            })
+            const result2 = await axios.get(`/api/getEmployeeWithoutAccnt`)
+            this.setState({
+                employees: result2.data,
                 loading: false
             })
         } catch (error) {
@@ -64,7 +70,6 @@ export class UserManagement extends Component {
         e.preventDefault()
         const newFormData = new FormData()
             newFormData.append('emp_id', this.state.emp_id)
-            newFormData.append('emp_name', this.state.emp_name)
             newFormData.append('emp_email', this.state.emp_email)
             newFormData.append('emp_role', this.state.emp_role)
             newFormData.append('emp_position', this.state.emp_position)
@@ -183,9 +188,17 @@ export class UserManagement extends Component {
         }
     }
 
+    handleSelectName = (event) => {
+        this.setState({
+            emp_name: event.target.options[event.target.options.selectedIndex].text,
+            emp_id: event.target.value
+        })
+    }
+
     handleSaveUser = (e) => {
         e.preventDefault()
         const data = {
+            emp_id: this.state.emp_id,
             emp_name: this.state.emp_name,
             emp_email: this.state.emp_email,
             emp_role: this.state.emp_role,
@@ -221,7 +234,7 @@ export class UserManagement extends Component {
     }
 
     render() {
-        const { loading, users, positions, formPart } = this.state
+        const { loading, users, positions, employees, formPart } = this.state
         if (loading) {
             return(
                 <AdminHeader>
@@ -239,54 +252,56 @@ export class UserManagement extends Component {
                                 <i className="far fa-user-plus text-sky-600"></i>
                             </div>
                         </div>
-                        <table className="w-100">
-                            <thead className='text-xl bg-purple text-white'>
-                                <tr>
-                                    <th className="border p-2 w-[5%] text-center"> # </th>
-                                    <th className="border p-2 w-[28%] text-center"> Name </th>
-                                    <th className="border p-2 w-[28%] text-center"> Email </th>
-                                    <th className="border p-2 w-[29%] text-center"> Role </th>
-                                    <th className="border p-2 w-[10%] text-center"> Actions </th>
-                                </tr>
-                            </thead>
-                            <tbody className='text-lg'>
-                                {users.map((val,ndx) => 
-                                    <tr key={ndx} className='hover:bg-slate-200 hover:cursor-pointer'>
-                                        <td className="border p-1 w-[5%] text-center"> {ndx+1} </td>
-                                        <td className="border p-2 w-[28%] text-start"> {val.name} </td>
-                                        <td className="border p-2 w-[28%] text-start"> {val.email} </td>
-                                        <td className="border p-2 w-[29%] text-start"> 
-                                            {val.position_name == "TWG Member" && val.isTWG == true ? 
-                                                <div className="contents"> GAD TWG Member </div> :
-                                            val.position_name == "GAD Staff" && val.isTWG == false ?
-                                                <div className="contents"> {val.position_name} </div> : 
-                                            val.position_name == "GAD Secretariat" ?
-                                                <div className="contents"> {val.position_name} </div> :
-                                            val.position_name == "TWG Chair" ?
-                                                <div className="contents"> GAD {val.position_name}person </div> : 
-                                            val.position_name == "Executive Committee Chair" ?
-                                                <div className="contents"> GAD {val.position_name}person </div> :
-                                            val.position_name == "TWG Member" && val.isTWG == false ? 
-                                                <div className="contents"> {val.position_name}
-                                                    <span className="text-red-500"> (TWG is set to FALSE) </span> 
-                                                </div> : 
-                                                <div className="contents"> {val.position_name} </div>
-                                            }
-                                        </td>
-                                        <td className="border p-2 w-[10%] text-start">
-                                            <div className="flex justify-evenly">
-                                                <div onClick={() => this.handleChangeForm(val.id)} className="btn-edt border-2 border-green-600 rounded-lg py-1 px-2">
-                                                    <i className="fas fa-edit text-green-600"></i>
-                                                </div>
-                                                <div onClick={() => this.handleDelete(val.id)} className="btn-del border-2 border-red-600 rounded-lg py-1 px-2">
-                                                    <i className="fas fa-trash-alt text-red-600"></i>
-                                                </div>
-                                            </div>
-                                        </td>
+                        <div className="h-[64vh] overflow-y-auto">
+                            <table className="w-100">
+                                <thead className='text-xl bg-purple text-white sticky top-0'>
+                                    <tr>
+                                        <th className="border p-2 w-[5%] text-center"> # </th>
+                                        <th className="border p-2 w-[28%] text-center"> Name </th>
+                                        <th className="border p-2 w-[28%] text-center"> Email </th>
+                                        <th className="border p-2 w-[29%] text-center"> Role </th>
+                                        <th className="border p-2 w-[10%] text-center"> Actions </th>
                                     </tr>
-                                )}
-                            </tbody>
-                        </table> 
+                                </thead>
+                                <tbody className='text-lg'>
+                                    {users.map((val,ndx) => 
+                                        <tr key={ndx} className='hover:bg-slate-200 hover:cursor-pointer'>
+                                            <td className="border p-1 w-[5%] text-center"> {ndx+1} </td>
+                                            <td className="border p-2 w-[28%] text-start"> {val.name} </td>
+                                            <td className="border p-2 w-[28%] text-start"> {val.email} </td>
+                                            <td className="border p-2 w-[29%] text-start"> 
+                                                {val.position_name == "TWG Member" && val.isTWG == true ? 
+                                                    <div className="contents"> GAD TWG Member </div> :
+                                                val.position_name == "GAD Staff" && val.isTWG == false ?
+                                                    <div className="contents"> {val.position_name} </div> : 
+                                                val.position_name == "GAD Secretariat" ?
+                                                    <div className="contents"> {val.position_name} </div> :
+                                                val.position_name == "TWG Chair" ?
+                                                    <div className="contents"> GAD {val.position_name}person </div> : 
+                                                val.position_name == "Executive Committee Chair" ?
+                                                    <div className="contents"> GAD {val.position_name}person </div> :
+                                                val.position_name == "TWG Member" && val.isTWG == false ? 
+                                                    <div className="contents"> {val.position_name}
+                                                        <span className="text-red-500"> (TWG is set to FALSE) </span> 
+                                                    </div> : 
+                                                    <div className="contents"> {val.position_name} </div>
+                                                }
+                                            </td>
+                                            <td className="border p-2 w-[10%] text-start">
+                                                <div className="flex justify-evenly">
+                                                    <div onClick={() => this.handleChangeForm(val.id)} className="btn-edt border-2 border-green-600 rounded-lg py-1 px-2">
+                                                        <i className="fas fa-edit text-green-600"></i>
+                                                    </div>
+                                                    <div onClick={() => this.handleDelete(val.id)} className="btn-del border-2 border-red-600 rounded-lg py-1 px-2">
+                                                        <i className="fas fa-trash-alt text-red-600"></i>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table> 
+                        </div>
                     </div>
                     : formPart == "two" ?  
                     <div className="contents">
@@ -298,22 +313,11 @@ export class UserManagement extends Component {
                         <div className="container w-100 p-0 border my-3 mx-2">
                             <div className="card border-0 bg-transparent">
                                 <div className="card-header">
-                                    <div className="text-center text-2xl"> New User </div>
+                                    <div className="text-center text-2xl"> Update User </div>
                                 </div>
                                 <div className="card-body">
                                     <form autoComplete="off" className="createform" onSubmit={this.handleUpdateUser}>
                                         <div className="flex">
-                                            <div className="form-group w-50 px-2">
-                                                <label className='text-lg' htmlFor="Name"> Name </label>
-                                                <input 
-                                                    onChange={this.handleFieldChange}
-                                                    value={this.state.emp_name}
-                                                    type="text" 
-                                                    name="emp_name"
-                                                    className="form-control" 
-                                                    placeholder="Name" 
-                                                />
-                                            </div>
                                             <div className="form-group w-50 px-2">
                                                 <label className='text-lg' htmlFor="EMail"> Email </label>
                                                 <input 
@@ -323,6 +327,16 @@ export class UserManagement extends Component {
                                                     name="emp_email"
                                                     className="form-control" 
                                                     placeholder="E-Mail" 
+                                                />
+                                            </div>
+                                            <div className="form-group w-50 px-2">
+                                                <label className='text-lg' htmlFor="password"> Password </label>
+                                                <input disabled
+                                                    onChange={this.handleFieldChange}
+                                                    value={this.state.password}
+                                                    type="text" 
+                                                    name="password"
+                                                    className="form-control" 
                                                 />
                                             </div>
                                         </div>
@@ -335,7 +349,6 @@ export class UserManagement extends Component {
                                                     className="custom-select w-100 border rounded text-lg p-1"
                                                     name="emp_position"
                                                 >
-                                                    <option className='text-center' value={""}> -- SELECT OPTION -- </option>
                                                     {positions.map((val,ndx) => 
                                                         <option key={ndx} value={val.position_id}> {val.position_name} </option>
                                                     )}
@@ -351,7 +364,6 @@ export class UserManagement extends Component {
                                                             className="custom-select w-100 border rounded text-lg p-1"
                                                             name="emp_role"
                                                         >
-                                                            <option className='text-center' value={""}> -- SELECT OPTION -- </option>
                                                             <option value={"admin"}> Admin </option>
                                                             <option value={"user"}> User </option>
                                                         </select>
@@ -403,13 +415,16 @@ export class UserManagement extends Component {
                                             <div className="form-group w-50 px-2">
                                                 <label className='text-lg' htmlFor="Name"> Name </label>
                                                 {this.state.emp_name.length == 0 ? <span className="text-danger text-base"> * </span> : ""}
-                                                <input 
-                                                    onChange={this.handleFieldChange}
-                                                    type="text" 
+                                                <select 
+                                                    onChange={this.handleSelectName}
                                                     name="emp_name"
-                                                    className="form-control" 
-                                                    placeholder="Name" 
-                                                />
+                                                    className="custom-select w-100 border rounded text-lg p-1"
+                                                >
+                                                    <option className='text-center' value=""> --SELECT OPTION -- </option>
+                                                    {employees.map((val,ndx) => 
+                                                        <option id={val.id} value={val.id}> {val.name} </option>
+                                                    )}
+                                                </select>
                                             </div>
                                             <div className="form-group w-50 px-2">
                                                 <label className='text-lg' htmlFor="EMail"> Email </label>

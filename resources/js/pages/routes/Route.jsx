@@ -65,6 +65,7 @@ import AdminReports from '../admin/pages/Reports'
 import AdminResPubs from '../admin/pages/ResourcesPublications'
 import AdminGallery from '../admin/pages/Gallery'
 import UserManagement from "../admin/pages/UserManagement"
+import EmployeeManagement from "../admin/pages/EmployeeManagement"
 
 //TRAINING MODULE
 import TrainingModule from '../modules/TrainingModule'
@@ -126,6 +127,7 @@ const routes = [
     { path:"/Admin/Resources-and-Publications", exact: true,  name: "Admin", component: AdminResPubs },
     { path:"/Admin/Gallery", exact: true,  name: "Admin", component: AdminGallery },
     { path:"/Admin/User-Management", exact: true,  name: "Admin", component: UserManagement },
+    { path:"/Admin/Employee-Management", exact: true,  name: "Admin", component: EmployeeManagement },
 
     //TRAINING MODULE
     // { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },

@@ -12,12 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PositionTableSeeder::class);
-        $this->call(ProfileTableSeeder::class);
-        $this->call(UserTableSeeder::class);
-        $this->call(UserRoleTableSeeder::class);
-        $this->call(AttribActsSeeder::class);
-        $this->call(AdminUserTableSeeder::class);
+        // $this->call(PositionTableSeeder::class);
+        // $this->call(ProfileTableSeeder::class);
+        // $this->call(UserTableSeeder::class);
+        // $this->call(UserRoleTableSeeder::class);
+        // $this->call(AttribActsSeeder::class);
+        // $this->call(AdminUserTableSeeder::class);
+        $this->call(EmployeeTableSeeder::class);
+        $this->call(EmployeeWithAccountSeeder::class);
         
         // \App\Models\User::factory(10)->create();
         // \App\Models\User::factory()->create([

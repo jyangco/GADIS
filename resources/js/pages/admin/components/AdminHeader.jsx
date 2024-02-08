@@ -73,9 +73,13 @@ const Layout = ({ children }) => {
                                 </Link>
                             </div>
                             <div className="d-flex w-25 justify-end">
-                                <Link id="adminbtn" to="/Admin/User-Management" className="text-decoration-none text-white px-4 py-2 border-x border-l-2 hover:bg-mediumpurple"> 
+                                <Link id="adminbtn" to="/Admin/Employee-Management" className="text-decoration-none text-white px-4 py-2 border-x border-l-2 hover:bg-mediumpurple"> 
+                                    <i className="far fa-users"></i>
+                                    <span className="toolTip text-sm absolute rounded-lg mt-8 -ml-11 bg-violet px-3 py-2">Employee Management</span>
+                                </Link>
+                                <Link id="adminbtn" to="/Admin/User-Management" className="text-decoration-none text-white px-4 py-2 border-x hover:bg-mediumpurple"> 
                                     <i className="far fa-users-cog"></i>
-                                    <span className="toolTip text-sm absolute rounded-lg mt-8 -ml-11 bg-violet px-3 py-2">User Settings</span>
+                                    <span className="toolTip text-sm absolute rounded-lg mt-8 -ml-11 bg-violet px-3 py-2">User Management</span>
                                 </Link>
                                 <div id="adminbtn" onClick={handleLogout} className="text-white px-4 py-2 border-x border-r-2 hover:bg-mediumpurple hover:cursor-pointer"> 
                                     <i className="fas fa-sign-out-alt"></i>

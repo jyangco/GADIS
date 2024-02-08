@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 use App\Models\AdminUser;
@@ -14,6 +15,7 @@ use App\Models\AnnexA;
 use App\Models\AnnexB;
 use App\Models\AnnexBGoals;
 use App\Models\ActivityDetails;
+use App\Models\Employee;
 use App\Models\ResPub;
 use App\Models\User;
 use App\Models\UserRole;
@@ -431,14 +433,36 @@ class AdminController extends Controller
                     ->get();
         return response()->json([
             'users' => $users,
-            'positions' => $positions
+            'positions' => $positions,
         ]);
+    }
+
+    //getting employees without accnt
+    public function getEmployeeWithoutAccnt(){
+        $employees = DB::table('employees')->select('*')->orderBy('employee_fname')->get();
+        $users = DB::table('users')->pluck('name');
+        foreach ($employees as $value) {
+            $employeeName[] = [strtolower($value->employee_fname. " " .$value->employee_lname),$value->employee_id];
+        }
+        $userArray = array();
+        foreach ($users as $value) {
+            array_push($userArray, strtolower($value));
+        }
+        $resultArray = array();
+        foreach ($employeeName as $value) {
+            if (!in_array($value[0], $userArray)) {
+                $object = ['id' => $value[1], 'name' => ucwords($value[0])];
+                array_push($resultArray, $object);
+            } 
+        }
+        return $resultArray;
     }
 
     //saving new user
     public function newUser(Request $request){
         try {
             $validator = Validator::make($request->all(), [
+                "emp_id" => "required",
                 "emp_name" => "required",
                 "emp_email" => "required",
                 "emp_role" => "required",
@@ -465,6 +489,9 @@ class AdminController extends Controller
                 $newUserProfile = UserProfile::create([
                     'user_id' => $newUser->id,
                     'position_id' => $request->emp_position
+                ]);
+                DB::table('employee_with_account')->insert([
+                    ['employee_id' => $request->emp_id, 'user_id' => $newUser->id]
                 ]);
                 return response()->json([
                     'status' => 200,
@@ -494,7 +521,6 @@ class AdminController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 "emp_id" => "required",
-                "emp_name" => "required",
                 "emp_email" => "required",
                 "emp_role" => "required",
                 "emp_position" => "required",
@@ -510,7 +536,6 @@ class AdminController extends Controller
                 DB::table('users')
                 ->where('id', $request->emp_id)
                 ->update([
-                    'name' => $request->emp_name ,
                     'email' => $request->emp_email
                 ]);
                 DB::table('user_profiles')
@@ -541,10 +566,139 @@ class AdminController extends Controller
         DB::table('users')->where('id', $id)->delete();
         DB::table('user_roles')->where('user_id', $id)->delete();
         DB::table('user_profiles')->where('user_id', $id)->delete();
+        DB::table('employee_with_account')->where('user_id', $id)->delete();
         return response()->json([
             'message' => 'User Deleted',
             'status' => 200
         ]);
+    }
+
+    //get Employee list
+    public function getEmployees(){
+        $employees = DB::table('employees')
+            ->select('employees.*', 'employee_with_account.user_id')
+            ->leftJoin('employee_with_account', function($join) {
+                $join->on('employees.employee_id', '=', 'employee_with_account.employee_id');
+            })
+            ->orderBy('employee_lname')
+            ->get();
+        return $employees;
+    }
+
+    //get specific Employee 
+    public function getSingleEmployee($id){
+        $employee = Employee::select('employees.*','employee_with_account.user_id','users.email')
+            ->leftJoin('employee_with_account', function($join) {
+                $join->on('employees.employee_id', '=', 'employee_with_account.employee_id');
+            })
+            ->leftJoin('users', function($join) {
+                $join->on('users.id', '=', 'employee_with_account.user_id');
+            })
+            ->findOrFail($id);
+        return $employee;
+    }
+
+    //update employee data
+    public function updateEmployee(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                "employee_id" => "required" ,
+                "employee_fname" => "required" ,
+                "employee_lname" => "required" ,
+                "employee_division" => "required" ,
+                "employee_sex" => "required" ,
+                "employee_status" => "required" ,
+                "employee_gender",
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                if ($request->employee_gender == null) {
+                    DB::table('employees')
+                    ->where('employee_id', $request->employee_id)
+                    ->update([
+                        "employee_fname" => $request->employee_fname,
+                        "employee_lname" => $request->employee_lname,
+                        "employee_division" => $request->employee_division,
+                        "employee_sex" => $request->employee_sex,
+                        "employee_status" => $request->employee_status,
+                        "employee_gender" => "",
+                    ]);
+                } else {
+                    DB::table('employees')
+                    ->where('employee_id', $request->employee_id)
+                    ->update([
+                        "employee_fname" => $request->employee_fname,
+                        "employee_lname" => $request->employee_lname,
+                        "employee_division" => $request->employee_division,
+                        "employee_sex" => $request->employee_sex,
+                        "employee_status" => $request->employee_status,
+                        "employee_gender" => $request->employee_gender,
+                    ]);
+                }
+                return response()->json([
+                    'status' => 200,
+                    "message" => "Success!"
+                ]);
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
+    }
+
+    //saving new employee
+    public function newEmployee(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                "employee_fname" => "required" ,
+                "employee_lname" => "required" ,
+                "employee_division" => "required" ,
+                "employee_sex" => "required" ,
+                "employee_status" => "required" ,
+                "employee_gender",
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                if ($request->employee_gender == null) {
+                    $newEmployee = Employee::create([
+                        "employee_fname" => $request->employee_fname,
+                        "employee_lname" => $request->employee_lname,
+                        "employee_division" => $request->employee_division,
+                        "employee_sex" => $request->employee_sex,
+                        "employee_status" => $request->employee_status,
+                        "employee_gender" => "",
+                    ]);
+                } else {
+                    $newEmployee = Employee::create([
+                        "employee_fname" => $request->employee_fname,
+                        "employee_lname" => $request->employee_lname,
+                        "employee_division" => $request->employee_division,
+                        "employee_sex" => $request->employee_sex,
+                        "employee_status" => $request->employee_status,
+                        "employee_gender" => $request->employee_gender,
+                    ]);
+                }
+                return response()->json([
+                    'status' => 200,
+                    "message" => "Success!"
+                ]);
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
     }
 //end of file
 }
