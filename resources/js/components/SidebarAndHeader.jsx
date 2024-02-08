@@ -83,7 +83,7 @@ function SidebarAndHeader() {
     if (UserRole == 'admin') {
         AuthLinks = (
             <div className="p-0 m-0 mobile-lg:!text-lg mobile-lg:!list-none">
-                <Link to="/My-profile" className="text-decoration-none">
+                <Link onClick={handleNotReady} to="/#" className="text-decoration-none">
                     <li className="py-3 px-2 text-left mobile-lg:!p-2"> 
                     <i className="far fa-user-alt me-2"></i>
                         Profile 
@@ -113,7 +113,7 @@ function SidebarAndHeader() {
     else {
         AuthLinks = (
             <div className="p-0 m-0 mobile-lg:!text-lg mobile-lg:!list-none">
-                <Link to="/My-profile" className="text-decoration-none">
+                <Link onClick={handleNotReady} to="/#" className="text-decoration-none">
                     <li className="py-3 px-2 text-left mobile-lg:!p-2"> 
                         <i className="far fa-user-alt me-2"></i>
                         Profile 
