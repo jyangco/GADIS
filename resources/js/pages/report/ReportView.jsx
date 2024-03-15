@@ -116,14 +116,14 @@ export class ReportView extends Component {
                             <div className="text-center fs-1 py-5"> Reports </div>
                             <div className="d-flex justify-content-between fs-2 pb-5">
                                 <div className="w-25 text-center">
-                                    <button className="border-dark p-3 hover:bg-slate-100 hover:rounded"
+                                    <button className="border-dark p-3 rounded-lg hover:bg-slate-100 hover:rounded"
                                         onClick={this.handleSelectGPB}
                                     > 
                                         GPB 
                                     </button>
                                 </div>
                                 <div className="w-25 text-center">
-                                    <button className="border-dark p-3 hover:bg-slate-100 hover:rounded"
+                                    <button className="border-dark p-3 rounded-lg hover:bg-slate-100 hover:rounded"
                                         onClick={this.handleSelectGAR}
                                     > 
                                         GAR 
@@ -131,7 +131,7 @@ export class ReportView extends Component {
                                 </div>
                                 {user_title.isTWG == true ?
                                     <div className="w-25 text-center">
-                                        <button className="border-dark p-3 hover:bg-slate-100 hover:rounded"
+                                        <button className="border-dark p-3 rounded-lg hover:bg-slate-100 hover:rounded"
                                             onClick={this.handleSelectSDD}
                                         > 
                                             SDD 

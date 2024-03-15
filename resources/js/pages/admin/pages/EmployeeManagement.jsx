@@ -232,9 +232,7 @@ export class EmployeeManagement extends Component {
                                                     <div onClick={()=>this.handleChangeFormTwo(val.employee_id)} className="btn-edt border-2 border-green-600 rounded-lg py-1 px-2">
                                                         <i className="fas fa-edit text-green-600"></i>
                                                     </div>
-                                                    <div className="btn-add border-2 border-sky-600 rounded-lg py-1 px-2">
-                                                        <i className="fas fa-external-link text-sky-600"></i>
-                                                    </div>
+                                                    {/* / */}
                                                 </div>
                                             </td>
                                         </tr>

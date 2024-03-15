@@ -131,6 +131,57 @@ export class UserManagement extends Component {
         })
     }
 
+    handleResetPassword = (e) => {
+        e.preventDefault()
+        const newFormData = new FormData()
+        newFormData.append('id', this.state.emp_id)
+        Swal.fire({
+            allowOutsideClick: false,
+            title: "Reset Password",
+            text: "Do you wish to proceed?",
+            icon: "warning",
+            showCancelButton: false,
+            showDenyButton: true,
+            denyButtonText: 'Cancel',
+            confirmButtonText: 'Yes',
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                axios.post('/api/resetUserPassword',(newFormData))
+                .then(response => {
+                    if (response.data.status == 200) {
+                        Swal.fire("Success", response.data.message, "success")
+                        this.setState({
+                            formPart: "one",
+                            emp_id: "",
+                            emp_name: "",
+                            emp_email: "",
+                            emp_role: "",
+                            emp_position: "",
+                            twg: false
+                        })
+                        this.fetchData()
+                        window.scrollTo({top: 0, behavior: 'smooth'})
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            text: (response.data.validation_errors),
+                        })
+                        window.scrollTo({top: 0, behavior: 'smooth'})
+                    }
+                })
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                title: (error.code),
+                text: (error.message),
+                icon: "error",
+            })
+            window.scrollTo({top: 0, behavior: 'smooth'})
+        })
+    }
+
     componentDidMount(){
         window.scrollTo({top: 0, behavior: 'smooth'})
         setTimeout(() => {
@@ -331,13 +382,22 @@ export class UserManagement extends Component {
                                             </div>
                                             <div className="form-group w-50 px-2">
                                                 <label className='text-lg' htmlFor="password"> Password </label>
-                                                <input disabled
-                                                    onChange={this.handleFieldChange}
-                                                    value={this.state.password}
-                                                    type="text" 
-                                                    name="password"
-                                                    className="form-control" 
-                                                />
+                                                <div className="flex justify-between">
+                                                    <div className="w-[85%]">
+                                                        <input disabled
+                                                            onChange={this.handleFieldChange}
+                                                            value={this.state.password}
+                                                            type="text" 
+                                                            name="password"
+                                                            className="form-control" 
+                                                        />
+                                                    </div>
+                                                    <div className="p-1">
+                                                        <button className='border py-1 px-2 rounded-lg bg-white' onClick={this.handleResetPassword}>
+                                                            Reset
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="flex">
@@ -422,7 +482,7 @@ export class UserManagement extends Component {
                                                 >
                                                     <option className='text-center' value=""> --SELECT OPTION -- </option>
                                                     {employees.map((val,ndx) => 
-                                                        <option id={val.id} value={val.id}> {val.name} </option>
+                                                        <option key={ndx} id={val.id} value={val.id}> {val.name} </option>
                                                     )}
                                                 </select>
                                             </div>

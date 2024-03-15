@@ -46,6 +46,9 @@ export class Index extends Component {
             planned: [],
             actual: [],
             year: [],
+            ben_planned: [],
+            ben_actual: [],
+            ben_year: [],
             loading: true
         }
     }
@@ -66,11 +69,17 @@ export class Index extends Component {
                 actual: budgetData.data.actual,
                 year: budgetData.data.year,
             })
+            const beneficiaryData = await axios.get('/api/getActualAndPlannedBeneficiaries')
+            this.setState({
+                ben_planned: beneficiaryData.data.planned,
+                ben_actual: beneficiaryData.data.actual,
+                ben_year: beneficiaryData.data.year,
+            })
             setTimeout(() => {
                 this.setState({
                     loading: false
                 })
-            }, 500)
+            }, 100)
         } catch (error) {
             Swal.fire({
                 title: (error.code),
@@ -187,7 +196,7 @@ export class Index extends Component {
         }
 
     render() {
-        const { users, logs, postsPerPage, currentPage, planned, actual, year, loading } = this.state
+        const { users, logs, postsPerPage, currentPage, planned, actual, year, ben_planned, ben_actual, ben_year, loading } = this.state
         const indexOfLastPage = currentPage * postsPerPage
         const indexOfFirstPage = indexOfLastPage - postsPerPage
         const slicedData = logs.slice(indexOfFirstPage, indexOfLastPage)
@@ -212,7 +221,30 @@ export class Index extends Component {
                     borderWidth: 3,
                     stack: 'Stack 1',
                 },
-            ]
+            ],
+        }
+        const beneficiaryData = {
+            labels: ben_year.map(val => val),
+            datasets: [
+                {
+                    type: 'bar',
+                    label: 'Planned Beneficiaries',
+                    data: ben_planned.map(val => val), 
+                    backgroundColor: 'rgb(0, 121, 255, 0.5)',
+                    borderColor: 'rgb(0, 121, 255)',
+                    borderWidth: 3,
+                    stack: 'Stack 0',
+                },
+                {
+                    type: 'bar',
+                    label: 'Actual Beneficiaries',
+                    data:  ben_actual.map(val => val),
+                    backgroundColor: 'rgb(0, 223, 162, 0.5)',
+                    borderColor: 'rgb(0, 223, 162)',
+                    borderWidth: 3,
+                    stack: 'Stack 1',
+                },
+            ],
         }
         if (loading) {
             return(
@@ -279,9 +311,17 @@ export class Index extends Component {
                             <div className="p-3">
                                 <div className="text-center text-xl"> Planned and Actual Budget per Year </div>
                                 <Chart 
-                                    data={budgetData} 
+                                    data={budgetData}
                                 />
                                 <div className="text-xs text-right text-info">*Figures are in Php(₱)</div>
+                            </div>
+                        </div>
+                        <div className="w-50">
+                            <div className="p-3">
+                                <div className="text-center text-xl"> Planned and Actual Beneficiaries per Year </div>
+                                <Chart 
+                                    data={beneficiaryData}
+                                />
                             </div>
                         </div>
                     </div>

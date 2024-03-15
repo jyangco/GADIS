@@ -22,11 +22,15 @@ Route::middleware(['auth:sanctum'])->group(function() {
         return response()->json(['message'=>'You are Authenticated','status'=>200], 200);
     });
     Route::post('/logout', 'App\Http\Controllers\api\AuthController@logout');
+    Route::post('/updateDetails', 'App\Http\Controllers\api\AuthController@updateDetails');
+    Route::post('/passwordChange', 'App\Http\Controllers\api\AuthController@passwordChange');
+    
     Route::get('/getTitle', 'App\Http\Controllers\api\AuthController@getTitle');
     Route::get('/inclusiveYears', 'App\Http\Controllers\api\AuthController@inclusiveYears');
     Route::get('/getSignatories', 'App\Http\Controllers\api\AuthController@getSignatories');
     Route::get('/getYears', 'App\Http\Controllers\api\AuthController@getYears');
     Route::get('/getAuth', 'App\Http\Controllers\api\AuthController@getAuth');
+    Route::get('/getEmployeeNames', 'App\Http\Controllers\api\AuthController@getEmployeeNames');
 
     //NOTIFICATIONS
     Route::get('/getNotif', 'App\Http\Controllers\api\NotificationController@getNotif');
@@ -119,6 +123,10 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/getCelebrationPictures', 'App\Http\Controllers\api\GalleryController@getCelebrationPictures');
     Route::post('/uploadImages', 'App\Http\Controllers\api\GalleryController@uploadImages');
 
+    //DASHBOARD
+    Route::get('/getEmployeeNumber', 'App\Http\Controllers\api\DashboardController@getEmployeeNumber');
+    Route::get('/getSexByDivision', 'App\Http\Controllers\api\DashboardController@getSexByDivision');
+
     //ADMIN
     Route::get('/getLogins', 'App\Http\Controllers\api\AdminController@getLogins');
     Route::get('/getHistories', 'App\Http\Controllers\api\AdminController@getHistories');
@@ -134,6 +142,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/getEmployees', 'App\Http\Controllers\api\AdminController@getEmployees'); 
     Route::get('/getSingleEmployee/{id}', 'App\Http\Controllers\api\AdminController@getSingleEmployee'); 
     Route::get('/getEmployeeWithoutAccnt', 'App\Http\Controllers\api\AdminController@getEmployeeWithoutAccnt'); 
+    Route::get('/getActualAndPlannedBeneficiaries', 'App\Http\Controllers\api\AdminController@getActualAndPlannedBeneficiaries'); 
     
     Route::post('/getGADAgenda', 'App\Http\Controllers\api\AdminController@getGADAgenda');
     Route::post('/updateAnnexA', 'App\Http\Controllers\api\AdminController@updateAnnexA');
@@ -145,6 +154,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/updateUser', 'App\Http\Controllers\api\AdminController@updateUser');
     Route::post('/newEmployee', 'App\Http\Controllers\api\AdminController@newEmployee');
     Route::post('/updateEmployee', 'App\Http\Controllers\api\AdminController@updateEmployee');
+    Route::post('/resetUserPassword', 'App\Http\Controllers\api\AdminController@resetUserPassword');
 
     Route::delete('/deleteImage/{id}', 'App\Http\Controllers\api\AdminController@deleteImage');
     Route::delete('/deleteUser/{id}', 'App\Http\Controllers\api\AdminController@deleteUser');

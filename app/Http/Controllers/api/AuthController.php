@@ -145,7 +145,129 @@ class AuthController extends Controller
     //Get auth user
     public function getAuth(){
         $user = Auth::user();
-        return $user;
+        $auth = DB::table('employee_with_account')
+                ->select('employees.*', 'users.id', 'users.email', 'users.name')
+                ->join('employees', 'employees.employee_id', '=', 'employee_with_account.employee_id')
+                ->join('users', 'users.id', '=', 'employee_with_account.user_id')
+                ->where('employee_with_account.user_id', '=', $user->id)
+                ->get();
+        return $auth[0];
+    }
+
+    //get employee list
+    public function getEmployeeNames(){
+        $employees = DB::table('employees')
+            ->select('employee_id', 'employee_fname', 'employee_lname', 'employee_status', 'employee_division', 'employee_sex')
+            ->orderBy('employee_lname')
+            ->get();
+        return $employees;
+    }
+
+    //update details
+    public function updateDetails(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                "employee_id" => "required", 
+                "employee_fname",
+                "employee_lname",
+                "employee_gender",
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                if ($request->employee_gender == null && $request->employee_fname == null && $request->employee_lname == null) {
+                    return response()->json([
+                        'status' => 304,
+                        "message" => "No changes in the employee data"
+                    ]);
+                } else if ($request->employee_gender == null) {
+                    DB::table('employees')
+                    ->where('employee_id', $request->employee_id)
+                    ->update([
+                        "employee_fname" => $request->employee_fname,
+                        "employee_lname" => $request->employee_lname,
+                        "employee_gender" => "",
+                    ]);
+                } else if ($request->employee_fname == null && $request->employee_lname == null) {
+                    DB::table('employees')
+                    ->where('employee_id', $request->employee_id)
+                    ->update([
+                        "employee_gender" => $request->employee_gender,
+                    ]);
+                } else {
+                    DB::table('employees')
+                    ->where('employee_id', $request->employee_id)
+                    ->update([
+                        "employee_fname" => $request->employee_fname,
+                        "employee_lname" => $request->employee_lname,
+                        "employee_gender" => $request->employee_gender,
+                    ]);
+                }
+                return response()->json([
+                    'status' => 200,
+                    "message" => "Success!"
+                ]);
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
+    }
+
+    //update password
+    public function passwordChange(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                "id" => "required", 
+                "old_pass" => "required|min:8",
+                "new_pass" => "required|min:8",
+                "confirm_pass" => "required|min:8",
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                $user = DB::table('users')->select('*')->where('id', '=', $request->id)->first();
+                if (Hash::check($request->new_pass, $user->password)){
+                    return response()->json([
+                        'status' => 304,
+                        "message" => "NEW PASSWORD cannot be the same as the OLD PASSWORD"
+                    ]);
+                } else if (Hash::check($request->old_pass, $user->password) && $request->new_pass == $request->confirm_pass) {
+                    DB::table('users')
+                    ->where('id',$request->id)
+                    ->update([
+                        "password" => Hash::make($request->confirm_pass),
+                    ]);
+                    return response()->json([
+                        'status' => 200,
+                        "message" => "Password Changed!"
+                    ]);
+                } else if (!Hash::check($request->old_pass, $user->password)){
+                    return response()->json([
+                        'status' => 401,
+                        "message" => "Old password incorrect!"
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 400,
+                        "message" => "Something went wrong!"
+                    ]);
+                }
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
     }
 //end of file
 }

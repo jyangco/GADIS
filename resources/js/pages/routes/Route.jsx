@@ -70,6 +70,10 @@ import EmployeeManagement from "../admin/pages/EmployeeManagement"
 //TRAINING MODULE
 import TrainingModule from '../modules/TrainingModule'
 
+//EMPLOYEE LIST
+import EmployeeList from "../employee/EmployeeList"
+import SingleEmployee from "../employee/SingleEmployee"
+
 const routes = [
     { path: "/", exact: true, name: "Login", component: Index },
     { path: "/dashboard", exact: true, name: "Dashboard", component: Dashboard },
@@ -114,6 +118,10 @@ const routes = [
     //USER
     { path: "/My-profile", exact: true, name: "User", component: UserProfile },
     //TRAINING
+    // code here ..
+    //EMPLOYEE
+    { path: "/Employees", exact: true, name: "Employee", component: EmployeeList },
+    { path: "/Employees/:id", exact: true, name: "Employee", component: SingleEmployee },
     // { path: "/Training", exact: true, name: "User", component: TrainingList },
     { path:"*",  name: "NotAuthorized", component: NotFound },
 

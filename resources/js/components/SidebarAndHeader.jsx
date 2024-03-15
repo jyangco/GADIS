@@ -83,13 +83,13 @@ function SidebarAndHeader() {
     if (UserRole == 'admin') {
         AuthLinks = (
             <div className="p-0 m-0 mobile-lg:!text-lg mobile-lg:!list-none">
-                <Link onClick={handleNotReady} to="/#" className="text-decoration-none">
+                <Link to="/My-profile" className="text-decoration-none">
                     <li className="py-3 px-2 text-left mobile-lg:!p-2"> 
                     <i className="far fa-user-alt me-2"></i>
                         Profile 
                     </li>
                 </Link>
-                <Link to="/messages" className="text-decoration-none">
+                <Link to="/Messages" className="text-decoration-none">
                     <li className="py-3 px-2 text-left mobile-lg:!p-2"> 
                     <i className="fas fa-envelope me-2"></i>
                         Notifications 
@@ -101,7 +101,7 @@ function SidebarAndHeader() {
                         }
                     </li>
                 </Link>
-                <Link onClick={handleNotReady} to="#" className="text-decoration-none">
+                <Link to="/Employees" className="text-decoration-none">
                     <li className="py-3 px-2 text-left mobile-lg:!p-2">
                         <i className="far fa-users me-2"></i>
                         Employees
@@ -113,7 +113,7 @@ function SidebarAndHeader() {
     else {
         AuthLinks = (
             <div className="p-0 m-0 mobile-lg:!text-lg mobile-lg:!list-none">
-                <Link onClick={handleNotReady} to="/#" className="text-decoration-none">
+                <Link to="/My-profile" className="text-decoration-none">
                     <li className="py-3 px-2 text-left mobile-lg:!p-2"> 
                         <i className="far fa-user-alt me-2"></i>
                         Profile 
@@ -395,7 +395,7 @@ function SidebarAndHeader() {
                         </Link>
                         <div className="dropdown cursor-pointer flex mx-3 row align-items-center h-12 text-indigo-50 mobile-lg:hidden hover:border hover:rounded-full hover:bg-mediumpurple"> 
                             <div className="mx-1 w-fit">
-                                {JSON.parse(localStorage.getItem('auth')).name} 
+                                {JSON.parse(localStorage.getItem('auth')).name}
                             </div>
                             <div className="p-2.5 w-fit z-999">
                                 <i className="far fa-ellipsis-v me-3"></i>

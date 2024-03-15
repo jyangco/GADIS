@@ -700,6 +700,60 @@ class AdminController extends Controller
             ], status:400);
         }
     }
+
+    //reset user password
+    public function resetUserPassword(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                'id' => "required"
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } 
+            else {
+                DB::table('users')
+                    ->where('id', $request->id)
+                    ->update([
+                        "password" => Hash::make("password"),
+                    ]);
+                return response()->json([
+                    'status' => 200,
+                    "message" => "Success!"
+                ]);
+            }
+        } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
+    }
+
+    //for getting planned and actual beneficiaries
+    public function getActualAndPlannedBeneficiaries(){
+        $acts = DB::table('activity_details')
+            ->join('activity_beneficiaries', 'activity_beneficiaries.act_id', '=', 'activity_details.act_id')
+            ->groupBy('act_year')
+            ->selectRaw('SUM(p_beneficiary_value) as planned, SUM(a_beneficiary_value) as actual, act_year')
+            ->orderby('act_year', 'asc')
+            ->get();
+        // return $acts;
+        $planned = array();
+        $actual = array();
+        $year = array();
+        foreach ($acts as $value) {
+            $planned[] = $value->planned;
+            $actual[] = $value->actual;
+            $year[] = $value->act_year;
+        }
+        return response()->json([
+            'planned' => $planned,
+            'actual' => $actual,
+            'year' => $year
+        ]);
+    }
 //end of file
 }
 

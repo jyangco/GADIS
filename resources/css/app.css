@@ -142,6 +142,7 @@ tr{ page-break-inside:avoid; page-break-after:auto }
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     z-index: 9999;
+    border-radius: 0.5rem
 }
 
 .modal-main {
@@ -154,6 +155,7 @@ tr{ page-break-inside:avoid; page-break-after:auto }
     transform: translate(-50%,-50%);
     overflow-x: auto;
     border: 2px solid black;
+    border-radius: 0.5rem
 }
 
 .display-block {

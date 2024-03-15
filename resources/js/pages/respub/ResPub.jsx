@@ -78,14 +78,14 @@ export class ResPub extends Component {
                             <div className="text-center fs-1 py-5"> Choose what files to view </div>
                             <div className="d-flex justify-content-between fs-2 pb-5">
                                 <div className="w-50 text-center">
-                                    <button className="border-dark p-3 hover:bg-slate-100"
+                                    <button className="border-dark p-3 rounded-lg hover:bg-slate-100"
                                         onClick={this.handleSelectInternal}
                                     > 
                                         Internal 
                                     </button>
                                 </div>
                                 <div className="w-50 text-center">
-                                    <button className="border-dark p-3 hover:bg-slate-100"
+                                    <button className="border-dark p-3 rounded-lg hover:bg-slate-100"
                                         onClick={this.handleSelectExternal}
                                     > 
                                         External 

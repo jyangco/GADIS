@@ -124,7 +124,7 @@ function Login() {
     }
 
     return (
-        <div className="container-fluid h-screen bg-gradient-to-br from-sky-500 to-pink-500">
+        <div className="container-fluid overflow-hidden h-screen bg-gradient-to-br from-sky-500 to-pink-500">
             <div className="hidden mobile-lg:flex mobile-lg:h-[40%]">
                 <div className="flex-auto w-1/4 place-self-center">
                     <img src={window.location.origin + '/images/Logo/SEI_LOGO.png'}/>
@@ -133,12 +133,14 @@ function Login() {
                     <img src={window.location.origin + '/images/Logo/GAD-Logo_3D-nobg.png'}/>
                 </div>
             </div>
-            <div className="flex p-2 h-full mobile-lg:h-0 mobile-lg:block">
+            {/* <div className="text-start text-white px-[248px] text-4xl font-mono font-extrabold pt-56"> Welcome to </div>
+            <div className="text-center text-white text-6xl font-mono font-extrabold"> DOST-SEI GAD Information System </div> */}
+            <div className="flex h-full mobile-lg:h-0 mobile-lg:block">
                 <div className="flex-auto w-1/4 place-self-center mobile-lg:hidden">
                     <img src={window.location.origin + '/images/Logo/SEI_LOGO.png'}/>
                 </div>
                 <div className="flex-auto w-1/2 place-self-center mobile-lg:w-full">
-                    <div className="card" style={{backgroundImage: 'linear-gradient(-225deg, #D6EEFB 50%, #FFE6FA 50%)'}}>
+                    <div className="card border-0" style={{backgroundImage: 'linear-gradient(-225deg, #D6EEFB 50%, #FFE6FA 50%)'}}>
                         <div className="card-header bg-transparent">
                             <div className="text-4xl text-center mobile-xs:text-xl"> <span className="capitalize"> {loginView.view} </span> Log in </div>
                         </div>
