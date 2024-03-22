@@ -7,7 +7,7 @@ export class ResourcesPublications extends Component {
     render() {
         return (
             <AdminHeader>
-                lol
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptate veniam repellendus. Quas quasi aliquam delectus at ipsum est corrupti sequi iure et. Incidunt, quam corporis facilis rerum voluptate recusandae.
             </AdminHeader>
         )
     }

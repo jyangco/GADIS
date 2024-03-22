@@ -357,7 +357,7 @@ function SidebarAndHeader() {
                     </button>
                 )}
             </NavLink>
-            <NavLink onClick={handleNotReady} id={13} to={"/#"} className={UserRole == 'admin' ? "no-underline" : "no-underline"}>
+            <NavLink id={13} to={"/About-GADIS"} className={UserRole == 'admin' ? "no-underline" : "no-underline"}>
                 {({ isActive }) => ( isActive ?
                     <span className="flex bg-white text-purple">
                         <i className="fas fa-bookmark fa-2x text-purple"></i> 

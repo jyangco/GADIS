@@ -69,6 +69,7 @@ import EmployeeManagement from "../admin/pages/EmployeeManagement"
 
 //TRAINING MODULE
 import TrainingModule from '../modules/TrainingModule'
+import AboutTheSystem from "../modules/AboutTheSystem"
 
 //EMPLOYEE LIST
 import EmployeeList from "../employee/EmployeeList"
@@ -139,6 +140,7 @@ const routes = [
 
     //TRAINING MODULE
     // { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },
+    { path:"/About-GADIS", exact: true,  name: "Admin", component: AboutTheSystem },
 ]
 
 export default routes
