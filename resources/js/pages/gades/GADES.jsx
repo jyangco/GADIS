@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import Layout from '../../components/Layout'
 
 function GADES() {
+
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'})
+    }, [])
+    
+
     return (
         <Layout title={"/ GADES"}>
             <div className="card shadow overflow-auto">

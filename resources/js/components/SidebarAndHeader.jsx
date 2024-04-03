@@ -439,7 +439,7 @@ function SidebarAndHeader() {
                 </div>
             </nav>
             <div className="mobile-lg:!block hidden">
-                <nav className={`shadow-inner bg-white sidebar z-999 top-0 border border-dark w-64 h-screen fixed ${showStyle} transition transform ease-in-out duration-1000`}>
+                <nav className={`shadow-inner bg-white sidebar z-999 top-0 border border-dark w-64 h-full fixed ${showStyle} transition transform ease-in-out duration-1000`}>
                     <div className="h-full overflow-y-auto">
                         <div className="bg-transparent h-[150px] border-2 border-b-black">
                             {/* <div className="text-5xl p-5"> GADIS </div> */}

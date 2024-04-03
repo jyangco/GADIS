@@ -26,7 +26,7 @@ const Layout = ({ children, title }) => {
                 </div>
             </nav>
             <hr className="ms-72 me-[2%] mobile-lg:mx-[5%]"/>
-            <div className="mobile-lg:!m-2 ms-72 me-4 mt-3 pb-5">
+            <div className="mobile-lg:!m-2 mobile-lg:!pb-2 ms-72 me-4 mt-3 pb-5">
                 {children}
             </div>
         </div>

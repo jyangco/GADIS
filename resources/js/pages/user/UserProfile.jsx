@@ -253,7 +253,7 @@ export class UserProfile extends Component {
             <Layout title={"/ My Profile"}>
                 <div className={`flex justify-center ${show == false ? "hidden": "visible"}`}>
                     <div className="absolute z-998">
-                        <div className="w-[30vw]">
+                        <div className="w-[30vw] mobile-lg:!w-[100%]">
                             <div className="card">
                                 <div className="card-header text-center text-2xl p-2">
                                     Change Password
@@ -313,7 +313,7 @@ export class UserProfile extends Component {
                                             false : true
                                         }
                                         className={ 
-                                            `bg-green-500 py-2 px-3 text-white text-xl rounded-lg 
+                                            `bg-green-500 py-2 px-3 text-white text-xl mobile-lg:!text-lg rounded-lg 
                                             ${password_match == "match" && 
                                             this.state.new_pass.length >= 8 && 
                                             this.state.confirm_pass.length >= 8 &&
@@ -324,7 +324,7 @@ export class UserProfile extends Component {
                                         }>
                                             SAVE
                                         </button>
-                                        <button onClick={this.forceClose} className="bg-red-500 py-2 px-3 text-white text-xl rounded-lg hover:shadow-2xl">
+                                        <button onClick={this.forceClose} className="bg-red-500 py-2 px-3 text-white text-xl mobile-lg:!text-lg rounded-lg hover:shadow-2xl">
                                             CANCEL
                                         </button>
                                     </div>
@@ -336,11 +336,11 @@ export class UserProfile extends Component {
                 <div className={`card border-2 border-purple rounded-lg ${show ? "hidden": "visible"}`}>
                     <div className="d-flex">
                         <div className={`w-[40%] border-r-2 border-purple rounded-lg ${profile.employee_sex == "Male" ? "bg-lightblue" : "bg-lightpink"}`}>
-                            <div className="p-3 flex flex-wrap justify-center">
-                                <img className="w-auto h-[250px]" src={window.location.origin + '/images/Logo/GAD-Logo_3D-nobg.png'}/>
+                            <div className="p-3 mobile-lg:!p-1 flex flex-wrap justify-center">
+                                <img className="w-auto h-[250px] mobile-lg:!h-[200px]" src={window.location.origin + '/images/Logo/GAD-Logo_3D-nobg.png'}/>
                                 <div className="w-100 text-center text-5xl mobile-lg:!text-xl">
-                                    <hr className="my-4" />
-                                    <div className="px-3 pb-4">
+                                    <hr className="my-4 mobile-lg:!my-2" />
+                                    <div className="px-3 pb-4 mobile-lg:!p-1 ">
                                         {editMode == false ? 
                                         <div className="contents">
                                             {profile.employee_fname} {profile.employee_lname}
@@ -366,11 +366,11 @@ export class UserProfile extends Component {
                                             </div>
                                         </div>
                                         }
-                                        <div className="pt-2 text-xl text-center text-primary">
+                                        <div className="pt-2 text-xl mobile-lg:!text-base text-center text-primary">
                                             <i className="fas fa-envelope me-1 fa-lg"></i>
                                             {profile.email}
                                         </div>
-                                        <div onClick={this.openModal} className={`text-sky-500 w-100 text-sm text-right underline-offset-2 hover:underline hover:cursor-pointer ${editMode == false ? "hidden" : ""}`}>
+                                        <div onClick={this.openModal} className={`text-sky-500 w-100 text-sm mobile-lg:!text-xs text-right underline-offset-2 hover:underline hover:cursor-pointer ${editMode == false ? "hidden" : ""}`}>
                                             <div className="w-75 mx-auto"> change password </div>
                                         </div>
                                     </div>
@@ -378,16 +378,16 @@ export class UserProfile extends Component {
                             </div>
                         </div>  
                         <div className="w-[60%]">
-                            <div onClick={this.handleEditMode} className={`hover:cursor-pointer float-right p-2 ${editMode == false ? "text-2xl" : "text-4xl text-green-500"}`}>
+                            <div onClick={this.handleEditMode} className={`hover:cursor-pointer float-right p-2 ${editMode == false ? "text-2xl" : "text-4xl mobile-lg:!text-3xl text-green-500"}`}>
                                 <i className="far fa-user-edit"></i>
                             </div>
-                            <div className="px-5 py-3">
-                                <div className="block border-b-4 pb-3 pt-2">
-                                    <div className="text-3xl text-slate-500 text-semibold p-1">
+                            <div className="px-5 py-3 mobile-lg:!px-3">
+                                <div className="block border-b-4 pb-3 pt-2 mobile-lg:!py-2">
+                                    <div className="mobile-lg:!text-2xl text-3xl text-slate-500 text-semibold p-1">
                                         Division
                                     </div>
                                     {editMode == false ? 
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg">
                                             {
                                                 profile.employee_division == "OD" ?
                                                     <span> Office of the Director </span> :
@@ -401,35 +401,35 @@ export class UserProfile extends Component {
                                                     <span> S&T Manpower Education Research and Promotions Division </span> : ""
                                             } 
                                         </div> :
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg mobile-lg:!ms-0">
                                             {
                                                 profile.employee_division == "OD" ?
                                                     <input disabled
-                                                        className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                        className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                         type='text'
                                                         value={"Office of the Director"}
                                                     />  :
                                                 profile.employee_division == "FAD" ?
                                                     <input disabled
-                                                        className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                        className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                         type='text'
                                                         value={"Finance and Administrative Division"}
                                                     />  :
                                                 profile.employee_division == "STSD" ?
                                                     <input disabled
-                                                        className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                        className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                         type='text'
                                                         value={"Science and Technology Scholarship Division"}
                                                     />  :
                                                 profile.employee_division == "SEID" ?
                                                     <input disabled
-                                                        className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                        className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                         type='text'
                                                         value={"Science Education and Innovations Division"}
                                                     />  :
                                                 profile.employee_division == "STMERPD" ?
                                                     <input disabled
-                                                        className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                        className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                         type='text'
                                                         value={"S&T Manpower Education Research and Promotions Division"}
                                                     />  : ""
@@ -437,27 +437,27 @@ export class UserProfile extends Component {
                                         </div>
                                     }
                                 </div>
-                                <div className="block border-b-4 pb-3 pt-2">
-                                    <div className="text-3xl text-slate-500 text-semibold p-1">
+                                <div className="block border-b-4 pb-3 pt-2 mobile-lg:!py-2">
+                                    <div className="text-3xl mobile-lg:!text-2xl text-slate-500 text-semibold p-1">
                                         Status
                                     </div>
                                     {editMode == false ? 
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg">
                                             {
                                                 profile.employee_status == "COS" ?
                                                     <span> Contract of Service </span> : <span> Regular </span>
                                             } 
                                         </div> : 
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg mobile-lg:!ms-0">
                                         {
                                             profile.employee_status == "COS" ?
                                                 <input disabled
-                                                    className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                    className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                     type='text'
                                                     value={"Contract of Service"}
                                                 /> : 
                                                 <input disabled
-                                                    className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                    className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                     type='text'
                                                     value={"Regular"}
                                                 />
@@ -465,28 +465,28 @@ export class UserProfile extends Component {
                                     </div>
                                     }
                                 </div>
-                                <div className="block border-b-4 pb-3 pt-2">
-                                    <div className="text-3xl text-slate-500 text-semibold p-1">
+                                <div className="block border-b-4 pb-3 pt-2 mobile-lg:!py-2">
+                                    <div className="text-3xl mobile-lg:!text-2xl text-slate-500 text-semibold p-1">
                                         Sex
                                     </div>
                                     {editMode == false ? 
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg">
                                             {
                                                 profile.employee_sex == "Male" ?
                                                     <span> Male <i className="text-sky-500 fas fa-mars"></i> </span>  : 
                                                     <span> Female <i className="text-fuchsia-500 fas fa-venus"></i> </span>
                                             } 
                                         </div> :
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg mobile-lg:!ms-0">
                                             {
                                                 profile.employee_sex == "Male" ?
                                                 <input disabled
-                                                    className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                    className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                     type='text'
                                                     value={"Male"}
                                                 /> : 
                                                 <input disabled
-                                                    className='bg-transparent text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
+                                                    className='bg-transparent mobile-lg:!w-[100%] text-slate-500 bg-slate-50 border border-black rounded-lg p-1 focus:outline-none'
                                                     type='text'
                                                     value={"Female"}
                                             />
@@ -494,21 +494,21 @@ export class UserProfile extends Component {
                                         </div>
                                     }
                                 </div>
-                                <div className="block pb-3 pt-2">
-                                    <div className="text-3xl text-slate-500 text-semibold p-1">
+                                <div className="block pb-3 pt-2 mobile-lg:!py-2">
+                                    <div className="text-3xl mobile-lg:!text-2xl text-slate-500 text-semibold p-1">
                                         Gender
                                     </div>
                                     {editMode == false ? 
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!text-lg">
                                             {
                                                 profile.employee_gender != "" ?
                                                 <span> {profile.employee_gender} <i className="text-purple fas fa-venus-mars"></i> </span> : 
                                                 <span>  </span>
                                             } 
                                         </div> :
-                                        <div className="text-2xl ms-5">
+                                        <div className="text-2xl ms-5 mobile-lg:!ms-0 mobile-lg:!text-lg">
                                             <input
-                                                className="bg-transparent border-2 border-black rounded-lg p-1 focus:outline-none " 
+                                                className="bg-transparent mobile-lg:!w-[100%] border-2 border-black rounded-lg p-1 focus:outline-none " 
                                                 type="text" 
                                                 name="employee_gender"
                                                 value={this.state.employee_gender}
@@ -519,7 +519,7 @@ export class UserProfile extends Component {
                                 </div>
                             </div>
                             <div className={`hover:cursor-pointer float-right -mt-6 p-2 ${editMode == false ? "hidden" : ""}`}>
-                                <button onClick={this.handleUpdateDetails} className="bg-green-500 mx-2 py-2 px-3 text-white text-2xl rounded-lg hover:shadow-2xl">
+                                <button onClick={this.handleUpdateDetails} className="bg-green-500 mx-2 py-2 px-3 text-white text-2xl mobile-lg:!text-lg rounded-lg hover:shadow-2xl">
                                     <i className="fal fa-save me-1"></i> SAVE
                                 </button>
                             </div>

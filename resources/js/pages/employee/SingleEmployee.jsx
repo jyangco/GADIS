@@ -74,13 +74,13 @@ export class SingleEmployee extends Component {
                 </Link>
                 <div className="card border-0">
                     <div className="container p-3">
-                        <div className="flex justify-evenly h-[75vh]">
-                            <div className="w-50 flex flex-wrap p-2 border rounded-lg shadow mx-5">
+                        <div className="flex justify-evenly h-[75vh] mobile-lg:!flex-wrap mobile-lg:gap-y-5 mobile-lg:!h-full">
+                            <div className="w-50 mobile-lg:!h-fit mobile-lg:!w-[100%] flex flex-wrap p-2 border rounded-lg shadow mx-5 mobile-lg:!mx-2">
                                 <div className="w-100 h-50 flex flex-wrap justify-center">
                                     <img className="w-auto h-full" src={window.location.origin + '/images/Logo/GAD-Logo_3D-nobg.png'}/>
                                     <span className="text-4xl font-bold w-100 text-center p-2 font-serif"> {employee.employee_fname} {employee.employee_lname} </span>
                                 </div>
-                                <div className="w-100 h-40">
+                                <div className="w-100 h-40 mobile-lg:!h-[50%]">
                                     <div className="text-base font-semibold w-100 text-start px-2 py-3 font-sans"> 
                                         {
                                             employee.employee_division == "OD" ?
@@ -112,21 +112,21 @@ export class SingleEmployee extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-50 flex flex-col mx-5">
-                                <div className="w-100 h-auto p-2 border rounded-lg shadow mb-3">
-                                    <div className="px-5 pb-3 pt-2 text-2xl font-bold">
+                            <div className="w-50 mobile-lg:!w-[100%] flex flex-col mx-5 mobile-lg:!mx-2">
+                                <div className="w-100 h-auto p-2 border rounded-lg shadow mb-3 mobile-lg:!mb-2.5">
+                                    <div className="px-5 mobile-lg:!px-3 mobile-lg:text-center pb-3 pt-2 text-2xl font-bold">
                                         Sex & Gender
                                     </div>
                                     <hr />
-                                    <div className="flex">
-                                        <div className="text-xl font-semibold w-50 text-start px-2 py-3 font-sans"> 
+                                    <div className="flex flex-wrap">
+                                        <div className="text-xl font-semibold w-50 mobile-lg:!w-[100%] mobile-lg:!py-2 text-start px-2 py-3 font-sans"> 
                                             {
                                                 employee.employee_sex == "Male" ?
                                                     <span> Sex: Male <i className="text-sky-500 fas fa-mars"></i> </span>  : 
                                                     <span> Sex: Female <i className="text-fuchsia-500 fas fa-venus"></i> </span>
                                             } 
                                         </div>
-                                        <div className="text-xl font-semibold w-50 text-start px-2 py-3 font-sans"> 
+                                        <div className="text-xl font-semibold w-50 mobile-lg:!w-[100%] mobile-lg:!py-2 text-start px-2 py-3 font-sans"> 
                                             {
                                                 employee.employee_gender != "" ?
                                                 <span> Gender: {employee.employee_gender} <i className="text-purple fas fa-venus-mars"></i> </span> : 
@@ -135,8 +135,8 @@ export class SingleEmployee extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-100 h-[58vh] overflow-y-auto p-2 border rounded-lg shadow mt-3">
-                                    <div className="px-5 pb-3 pt-2 text-2xl font-bold">
+                                <div className="w-100 h-[58vh] overflow-y-auto p-2 border rounded-lg shadow mt-3 mobile-lg:!mt-2.5">
+                                    <div className="px-5 mobile-lg:!px-3 mobile-lg:text-center pb-3 pt-2 text-2xl font-bold">
                                         List of Trainings Attended
                                     </div>
                                     <hr />

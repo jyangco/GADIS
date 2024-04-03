@@ -230,8 +230,8 @@ export class EmployeeList extends Component {
         }
         return (
             <Layout title={"/ Employee List"}>
-                <div className="w-100 flex justify-between pb-3 pe-5">
-                    <div className="w-[40%] p-1 flex">
+                <div className="w-100 flex justify-between pb-3 pe-5 mobile-lg:flex-wrap mobile-lg:!pe-0">
+                    <div className="mobile-lg:w-[100%] w-[40%] p-1 flex">
                         <button className='rounded-l-lg bg-slate-300 text-lg px-2' onClick={this.handleClear}>
                             <i className="far fa-sync"></i>
                         </button>
@@ -246,7 +246,7 @@ export class EmployeeList extends Component {
                             <i className="far fa-search"></i>
                         </button>
                     </div>
-                    <div className="w-auto p-2 flex"> 
+                    <div className="w-auto p-2 flex mobile-lg:!w-[100%]"> 
                         Status <i className="far fa-filter p-1"></i>
                         <select 
                             name="statusInput"
@@ -259,7 +259,7 @@ export class EmployeeList extends Component {
                             <option value="COS"> COS </option>
                         </select>
                     </div>
-                    <div className="w-auto p-2 flex"> 
+                    <div className="w-auto p-2 flex mobile-lg:!w-[100%]"> 
                         Division <i className="far fa-filter p-1"></i>
                         <select 
                             name="divisionInput"
@@ -275,7 +275,7 @@ export class EmployeeList extends Component {
                             <option value="STMERPD"> STMERPD </option>
                         </select>
                     </div>
-                    <div className="w-auto p-2 flex"> 
+                    <div className="w-auto p-2 flex mobile-lg:!w-[100%]"> 
                         Sex <i className="far fa-filter p-1"></i>
                         <select 
                             name="sexInput"
@@ -289,8 +289,8 @@ export class EmployeeList extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="h-[75vh] overflow-y-auto">
-                    <table className="w-100">
+                <div className="h-[75vh] overflow-y-auto mobile-lg:!h-[50vh] mobile-lg:!overflow-x-hidden">
+                    <table className="w-100 mobile-lg:!scale-x-[0.55] mobile-lg:!w-fit">
                         <thead className='text-xl bg-purple text-white sticky top-0'>
                             <tr>
                                 <th className="border p-2 text-center w-[5%]"> # </th>
