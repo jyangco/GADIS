@@ -18,7 +18,7 @@ module.exports = {
     screens: {
       'mobile-xs': {max: '320px'},
       'mobile-md': {max: '375px'},
-      'mobile-lg': {max: '425px'},
+      'mobile-lg': {max: '430px'},
     },
     boxShadow: {
       'inner': 'inset -5px -5px 150px 10px #D3B5E5;',

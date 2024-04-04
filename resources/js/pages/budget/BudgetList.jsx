@@ -257,7 +257,7 @@ export class BudgetList extends Component {
                             {PPA.map((act, ndx) => 
                                 <div className="w-50 p-3 mobile-lg:!w-[100%]" key={ndx} onClick={() => this.handleOpenModal(act.budget_id)}>
                                     <div id="ppaContainer" className="p-3" style={{height:'100%'}}>
-                                        <div classname="font-bold"> Agency Approved Budget: </div>
+                                        <div className="font-bold"> Agency Approved Budget: </div>
                                         <div className="ms-5 mobile-lg:!ms-4"> 
                                             {act.planned_budget % 1 != 0?
                                                 <NumericFormat 
@@ -280,7 +280,7 @@ export class BudgetList extends Component {
                                             }
                                         </div>
                                         <hr/>
-                                        <div classname="font-bold"> Actual Cost: </div>
+                                        <div className="font-bold"> Actual Cost: </div>
                                         <div className="ms-5 mobile-lg:!ms-4"> 
                                             {act.actual_budget % 1 != 0?
                                                 <NumericFormat 
@@ -303,7 +303,7 @@ export class BudgetList extends Component {
                                             }
                                         </div>
                                         <hr/>
-                                        <div classname="font-bold"> GAD Activity: </div>
+                                        <div className="font-bold"> GAD Activity: </div>
                                         {act.act_atitles.length > 1 ?
                                             <ol className="ms-5 mobile-lg:!ms-4">
                                                 {act.act_atitles.map((titles,index) => (

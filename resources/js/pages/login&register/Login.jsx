@@ -163,7 +163,7 @@ function Login() {
                                     <p className='text-5xl py-2'> Hello,</p>
                                     <p className='text-3xl py-2'> Welcome to DOST-SEI GAD Information System </p>
                                 </div>
-                                <div className="flex justify-end p-3">
+                                <div className="flex justify-end p-3 mobile-lg:!pt-0">
                                     <button onClick={handleSetMainView} className="rounded-full bg-purple text-slate-50 hover:bg-lightpurple">
                                         <p className="my-1 mx-3 text-lg mobile-xs:text-sm"> Log in 
                                             <i className="fas fa-arrow-from-left mx-1 mobile-xs:text-sm"></i>
@@ -181,7 +181,7 @@ function Login() {
                                     <div className="text-4xl text-purple font-extrabold text-center mobile-xs:text-xl"> <span className="capitalize"> {loginView.view} </span> Log in </div>
                                 </div>
                                 <div className="card-body mobile-lg:!p-0">
-                                    <div className={loginView == "" ? "d-flex py-5 h-[300px]" : "d-flex"}>
+                                    <div className={loginView == "" ? "d-flex py-5 h-[300px]" : "d-flex mobile-lg:!py-1"}>
                                         <div className="w-50">
                                             <div className="text-center p-2 mobile-lg:!p-0">
                                                 <button onClick={() => handleSetLoginView('admin')} 
@@ -222,7 +222,7 @@ function Login() {
                                         </div>
                                     </div>
                                     {loginView.view === 'user' ?
-                                        <form onSubmit={submitLogin}>
+                                        <form className='mobile-lg:!p-2' onSubmit={submitLogin}>
                                             <div className="form-group">
                                                 <label>Email </label>
                                                 <input 
@@ -262,7 +262,7 @@ function Login() {
                                                 </button>
                                             </div>
                                         </form> : loginView.view === 'admin' ?
-                                        <form onSubmit={submitAdminLogin}>
+                                        <form className='mobile-lg:!p-2' onSubmit={submitAdminLogin}>
                                             <div className="form-group">
                                                 <label>Admin Username </label>
                                                 <input 

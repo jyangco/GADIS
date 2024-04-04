@@ -231,7 +231,7 @@ export class EmployeeList extends Component {
         return (
             <Layout title={"/ Employee List"}>
                 <div className="w-100 flex justify-between pb-3 pe-5 mobile-lg:flex-wrap mobile-lg:!pe-0">
-                    <div className="mobile-lg:w-[100%] w-[40%] p-1 flex">
+                    <div className="mobile-lg:w-[100%] w-[40%] p-2 flex">
                         <button className='rounded-l-lg bg-slate-300 text-lg px-2' onClick={this.handleClear}>
                             <i className="far fa-sync"></i>
                         </button>
@@ -290,7 +290,7 @@ export class EmployeeList extends Component {
                     </div>
                 </div>
                 <div className="h-[75vh] overflow-y-auto mobile-lg:!h-[50vh] mobile-lg:!overflow-x-hidden">
-                    <table className="w-100 mobile-lg:!scale-x-[0.55] mobile-lg:!w-fit">
+                    <table className="w-100 mobile-lg:!scale-x-[0.65] mobile-lg:!w-100 mobile-lg:!-ms-[105px]">
                         <thead className='text-xl bg-purple text-white sticky top-0'>
                             <tr>
                                 <th className="border p-2 text-center w-[5%]"> # </th>

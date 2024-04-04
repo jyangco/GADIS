@@ -348,7 +348,7 @@ export class UserProfile extends Component {
                                         <div className=" block">
                                             <div className="w-100">
                                                 <input
-                                                    className="w-75 bg-slate-50 border-2 border-black rounded-lg p-1 text-2xl focus:outline-none " 
+                                                    className="w-75 mobile-lg:!w-[100%] bg-slate-50 border-2 border-black rounded-lg p-1 text-2xl focus:outline-none " 
                                                     type="text" 
                                                     name="employee_fname"
                                                     value={this.state.employee_fname}
@@ -357,7 +357,7 @@ export class UserProfile extends Component {
                                             </div>
                                             <div className="w-100">
                                                 <input
-                                                    className="w-75 bg-slate-50 border-2 border-black rounded-lg p-1 text-2xl focus:outline-none " 
+                                                    className="w-75 mobile-lg:!w-[100%] bg-slate-50 border-2 border-black rounded-lg p-1 text-2xl focus:outline-none " 
                                                     type="text" 
                                                     name="employee_lname"
                                                     value={this.state.employee_lname}

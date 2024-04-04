@@ -11,7 +11,7 @@ const Layout = ({ children, title }) => {
     return (
         <div className="wrapper">
             <SidebarAndHeader />
-            <nav aria-label="breadcrumb" className="ms-72 mt-14 mobile-lg:ms-[5%] mobile-lg:mt-[160px]">
+            <nav aria-label="breadcrumb" className="ms-72 mt-14 mobile-lg:mx-[5%] mobile-lg:mt-[160px]">
                 <div className="mobile-lg:inline flex justify-content-between">
                     <div className="breadcrumb bg-transparent px-2 py-3 m-0">
                         <div className="breadcrumb-item-dash"> 

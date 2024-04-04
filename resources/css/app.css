@@ -244,3 +244,7 @@ tr{ page-break-inside:avoid; page-break-after:auto }
 .btn-cnl:hover i {
     color: #fff;
 }
+
+.swal2-container{
+    z-index: 99999;
+}
