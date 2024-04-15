@@ -16,7 +16,7 @@
     "src": "public/images/Logo/GAD-Logo_3D-nobg.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-13d5223d.css",
+    "file": "assets/app-70046c52.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -34,7 +34,7 @@
     "css": [
       "assets/app-93e82042.css"
     ],
-    "file": "assets/app-a640814c.js",
+    "file": "assets/app-60449763.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
