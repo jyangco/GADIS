@@ -129,12 +129,12 @@ function Annex_B() {
                 <i className="far fa-arrow-left rounded-circle p-1"></i>
                 <span className="tooltip-text text-sm ms-1">back</span>
             </Link>
-            <div className="text-center text-3xl"> New GAD Agenda (Annex B)  </div>
+            <div className="text-center text-3xl"> New GAD Agenda (Annex B) </div>
             <div className=" mb-2 mx-5 text-center"> {AnnexA.start_year} - {AnnexA.end_year} </div>
             <div className="p-5 mobile-lg:!p-2">
             <div className='text-lg text-primary mobile-lg:text-base'> II. <span className="ms-5"> GAD Strategic Plan </span>  </div>
                 <form className="overflow-auto" onSubmit={onFormSubmit}>
-                    <table className="table border w-full">
+                    <table className="table border">
                         <thead>
                             <tr>
                                 <th colSpan="5"> Agency: DOST - Science Education Institute </th>
@@ -148,15 +148,15 @@ function Annex_B() {
                                     }
                                     <br/>
                                     Goal
-                                    <select 
+                                    <select
                                         name="goal_id"
-                                        className="custom-select ms-2 border p-1"
+                                        className="custom-select border p-1 overflow-hidden w-[100%] whitespace-pre text-ellipsis"
                                         value={goal_id}
                                         onChange={e => setGoalID(e.target.value)}
                                     >
                                         <option className='text-center' value=""> -- Select Value -- </option>
                                         {goals.map((val,i) => (
-                                            <option className="overflow-auto" key={i} value={val.goal_id}> {val.goal_index}: {val.GAD_goal} </option>
+                                            <option key={i} value={val.goal_id}> {val.goal_index}: {val.GAD_goal} </option>
                                         ))}
                                     </select>
                                 </th>
