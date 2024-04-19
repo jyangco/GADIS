@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/logout', 'App\Http\Controllers\api\AuthController@logout');
     Route::post('/updateDetails', 'App\Http\Controllers\api\AuthController@updateDetails');
     Route::post('/passwordChange', 'App\Http\Controllers\api\AuthController@passwordChange');
+    Route::post('/changeProfile', 'App\Http\Controllers\api\AuthController@changeProfile');
     
     Route::get('/getTitle', 'App\Http\Controllers\api\AuthController@getTitle');
     Route::get('/inclusiveYears', 'App\Http\Controllers\api\AuthController@inclusiveYears');

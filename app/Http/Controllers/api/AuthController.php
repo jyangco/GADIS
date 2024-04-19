@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 
 use App\Models\User;
 use App\Models\AnnexA;
+use App\Models\ProfilePicture;
 
 class AuthController extends Controller
 {
@@ -264,6 +265,49 @@ class AuthController extends Controller
                 }
             }
         } catch(\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], status:400);
+        }
+    }
+
+    //update profile picture
+    public function changeProfile(Request $request){
+        try {
+            $validator = Validator::make($request->all(), [
+                'profile_id' => 'required',
+                'user_id' => 'required',
+                'profile_image' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'validation_errors' => $validator->messages(),
+                    'status' => 400
+                ]);
+            } else {
+                if ($request->hasFile('profile_image')) {
+                    foreach ($request->file('profile_image') as $image) {
+                        $filename = $image->getClientOriginalName();
+                        $path = ("images/Events");
+                        $file_name = $path."/".$filename;
+                        $image->move($path, $filename);
+                        ProfilePicture::create([
+                            'profile_id' => $request->profile_id,
+                            'user_id' => $request->user_id,
+                            'profile_image' => $file_name,
+                        ]);
+                    }
+                    return response()->json([
+                        'status' => 200,
+                        "message" => "File Uploaded Succesfully"
+                    ]);
+                } else {
+                    return response()->json([
+                        "message" => "File Uploading Failed"
+                    ]);
+                }
+            }
+        }  catch(\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
             ], status:400);
