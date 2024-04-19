@@ -272,7 +272,7 @@ class AuthController extends Controller
     }
 
     //update profile picture
-    public function changeProfile(Request $request){
+    public function uploadProfile(Request $request){
         try {
             $validator = Validator::make($request->all(), [
                 'profile_id' => 'required',
@@ -288,7 +288,7 @@ class AuthController extends Controller
                 if ($request->hasFile('profile_image')) {
                     foreach ($request->file('profile_image') as $image) {
                         $filename = $image->getClientOriginalName();
-                        $path = ("images/Events");
+                        $path = ("images/Profile");
                         $file_name = $path."/".$filename;
                         $image->move($path, $filename);
                         ProfilePicture::create([
