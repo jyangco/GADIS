@@ -658,24 +658,26 @@ export class ReportSubmit extends Component {
                                 <div className="flex justify-content-start">
                                     Prepared by:
                                 </div>
-                                <div className="flex justify-content-evenly mt-5">
-                                    <div className="w-25">
-                                        {signatories.GAD_Secretariat}
+                                <div className="flex mt-5">
+                                    <div className="w-50 text-center">
+                                        <div className="font-bold"> {signatories.GAD_Secretariat} </div>
                                         <div className="text-base"> GAD Secretariat </div>
                                     </div>
-                                    <div className="w-25">
-                                        {signatories.TWG_Chairperson}
+                                    <div className="w-50 text-center">
+                                        <div className="font-bold"> {signatories.TWG_Chairperson} </div>
                                         <div className="text-base"> GAD TWG Chairperson </div>
                                     </div>
                                 </div>
-                                <div className="bg-transparent h-10"></div>
+                                <div className="bg-transparent h-20"></div>
                                 <div className="flex justify-content-center">
                                     Approved by:
                                 </div>
                                 <div className="flex justify-content-center mt-5">
-                                    <div>
-                                        {signatories.Executive_Committee_Chairperson}
-                                        <div className="text-base"> Director, DOST-SEI </div>
+                                    <div className='text-center'>
+                                        <div className="font-bold"> {signatories.Executive_Committee_Chairperson} </div>
+                                        <div className="text-base"> 
+                                            GAD Executive Committee <br /> Chairperson 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
