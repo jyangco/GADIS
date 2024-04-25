@@ -40,7 +40,7 @@ class AdminController extends Controller
                     'message' => 'Invalid Credentials'
                 ]);
             } else {
-                $token = $user->createToken($user->username,['server:admin'])->plainTextToken;
+                $token = $user->createToken($user->username,['server:system_admin'])->plainTextToken;
                 return response()->json([
                     'status' => 200,
                     'token' => $token,
@@ -56,6 +56,7 @@ class AdminController extends Controller
 
     //get recent logins
     public function getLogins(){
+        $user = Auth::user();
         $logHistory = DB::table('personal_access_tokens')
             ->select('name', 'created_at')
             ->whereNot('name', '=', 'Administrator')

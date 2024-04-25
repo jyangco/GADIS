@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | api Routes
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'App\Http\Controllers\api\AuthController@login');
 Route::post('/AdminLogin', 'App\Http\Controllers\api\AdminController@AdminLogin');
 
-Route::middleware(['auth:sanctum'])->group(function() {
+Route::middleware(['auth:sanctum','AuthAPI'])->group(function() {
     Route::get('/authentication', function() {
         return response()->json(['message'=>'You are Authenticated','status'=>200], 200);
     });
@@ -127,7 +126,9 @@ Route::middleware(['auth:sanctum'])->group(function() {
     //DASHBOARD
     Route::get('/getEmployeeNumber', 'App\Http\Controllers\api\DashboardController@getEmployeeNumber');
     Route::get('/getSexByDivision', 'App\Http\Controllers\api\DashboardController@getSexByDivision');
+});
 
+Route::middleware(['auth:sanctum', 'AdminAPI'])->group(function() {
     //ADMIN
     Route::get('/getLogins', 'App\Http\Controllers\api\AdminController@getLogins');
     Route::get('/getHistories', 'App\Http\Controllers\api\AdminController@getHistories');
