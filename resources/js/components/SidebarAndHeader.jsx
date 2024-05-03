@@ -60,7 +60,7 @@ function SidebarAndHeader() {
     useEffect(() => {
         if (notif == "") {
             axios.get('/api/getNotif').then(data => {
-                setNotif(data.data)
+                setNotif({messages: data.data.messages, store: ""})
             })
         } else {
             ""
@@ -95,7 +95,7 @@ function SidebarAndHeader() {
                         Notifications 
                         {notif.messages == 0 ?
                             "" :
-                            <span className="ms-5 px-1 rounded-circle text-white bg-danger"> 
+                            <span className="px-1 rounded-circle text-white bg-danger float-right"> 
                                 {notif.messages}   
                             </span>
                         }
@@ -125,7 +125,7 @@ function SidebarAndHeader() {
                         Notifications 
                         {notif.messages == 0 ?
                             "" :
-                            <span className="ms-5 px-1 rounded-circle text-white bg-danger"> 
+                            <span className="px-1 rounded-circle text-white bg-danger float-right"> 
                                 {notif.messages}   
                             </span>
                         }

@@ -16,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'App\Http\Controllers\api\AuthController@login');
 Route::post('/AdminLogin', 'App\Http\Controllers\api\AdminController@AdminLogin');
 
+Route::middleware(['auth:sanctum'])->group(function() {
+    Route::post('/logout', 'App\Http\Controllers\api\AuthController@logout');
+});
+
 Route::middleware(['auth:sanctum','AuthAPI'])->group(function() {
     Route::get('/authentication', function() {
         return response()->json(['message'=>'You are Authenticated','status'=>200], 200);
     });
-    Route::post('/logout', 'App\Http\Controllers\api\AuthController@logout');
     Route::post('/updateDetails', 'App\Http\Controllers\api\AuthController@updateDetails');
     Route::post('/passwordChange', 'App\Http\Controllers\api\AuthController@passwordChange');
     Route::post('/uploadProfile', 'App\Http\Controllers\api\AuthController@uploadProfile');

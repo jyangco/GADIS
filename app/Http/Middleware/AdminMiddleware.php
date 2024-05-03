@@ -34,8 +34,8 @@ class AdminMiddleware
             return $next($request);
         } else {
             return response()->json([
-                'message' => 'ACCESS DENIED, YOUR SESSION HAS EXPIRED'
-            ], 403);
+                'message' => 'ACCESS DENIED, INVALID USER SESSION'
+            ],403);
         }
     }
 }

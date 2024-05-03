@@ -25,10 +25,9 @@ function Login() {
     })
 
     useEffect(() => {
-        window.onload
         if (localStorage.getItem('auth') && JSON.parse(localStorage.getItem('auth')).session == "ADMIN") {
             history("/Admin/Dashboard")
-        } else if (localStorage.getItem('auth')) {
+        } else if (localStorage.getItem('auth') && JSON.parse(localStorage.getItem('auth')).session == "USER") {
             history("dashboard")
         } else {
             history("/")
@@ -72,6 +71,7 @@ function Login() {
                         JSON.stringify(
                             {token: res.data.token, 
                             name: res.data.name, 
+                            session: "USER",
                             role: CryptoJS.AES.encrypt(res.data.role, "gadisgood").toString()}
                         )
                     )
@@ -80,7 +80,7 @@ function Login() {
                         title: "Welcome" + " " + res.data.name
                     })
                     axios.get('/api/getNotif').then(data => {
-                        setNotif(data.data)
+                        setNotif({messages: data.data.messages, store: ""})
                     })
                     history("/dashboard")
                 } else if (res.data.status === 401) {

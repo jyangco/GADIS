@@ -35,7 +35,7 @@ class AuthMiddleware
             return $next($request);
         } else {
             return response()->json([
-                'message' => 'ACCESS DENIED, YOUR SESSION HAS EXPIRED'
+                'message' => 'ACCESS DENIED, INVALID USER SESSION'
             ], 403);
         }
     }

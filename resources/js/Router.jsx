@@ -8,15 +8,14 @@ const Main = (props) =>(
     <Routes>
         <Route path="/" element={<RouteLayout/>}>
             {routes.map((rowt, idx) => 
-                    <Route 
-                        key={idx}
-                        path={rowt.path}
-                        exact={rowt.exact}
-                        name={rowt.name}
-                        element={< rowt.component />}
-                    />
-                )
-            }
+                <Route 
+                    key={idx}
+                    path={rowt.path}
+                    exact={rowt.exact}
+                    name={rowt.name}
+                    element={< rowt.component />}
+                />
+            )}
         </Route>
     </Routes>
 )

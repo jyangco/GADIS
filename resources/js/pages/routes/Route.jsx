@@ -1,6 +1,7 @@
 import Index from "../Index"
 import Dashboard from "../Dashboard"
 import NotFound from "./NotFound"
+import NotAuthorized from "./NotAuthorized"
 
 //GADES
 import GADES from "../gades/GADES"
@@ -52,9 +53,6 @@ import UploadImages from "../gallery/UploadImages"
 //USER
 import UserProfile from "../user/UserProfile"
 
-//TRAINING
-import TrainingList from "../training/TrainingList"
-
 //ADMIN
 import AdminIndex from '../admin/Index'
 import AdminAgenda from '../admin/pages/Agenda'
@@ -66,6 +64,9 @@ import AdminResPubs from '../admin/pages/ResourcesPublications'
 import AdminGallery from '../admin/pages/Gallery'
 import UserManagement from "../admin/pages/UserManagement"
 import EmployeeManagement from "../admin/pages/EmployeeManagement"
+
+//TRAINING
+import TrainingList from "../training/TrainingList"
 
 //TRAINING MODULE
 import TrainingModule from '../modules/TrainingModule'
@@ -126,6 +127,10 @@ const routes = [
     // { path: "/Training", exact: true, name: "User", component: TrainingList },
     { path:"*",  name: "NotAuthorized", component: NotFound },
 
+    //TRAINING MODULE
+    // { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },
+    { path:"/About-GADIS", exact: true,  name: "Admin", component: AboutTheSystem },
+
     //ADMIN
     { path:"/Admin/Dashboard", exact: true,  name: "Admin", component: AdminIndex },
     { path:"/Admin/Agenda", exact: true,  name: "Admin", component: AdminAgenda },
@@ -137,10 +142,6 @@ const routes = [
     { path:"/Admin/Gallery", exact: true,  name: "Admin", component: AdminGallery },
     { path:"/Admin/User-Management", exact: true,  name: "Admin", component: UserManagement },
     { path:"/Admin/Employee-Management", exact: true,  name: "Admin", component: EmployeeManagement },
-
-    //TRAINING MODULE
-    // { path:"/Training-Module", exact: true,  name: "Admin", component: TrainingModule },
-    { path:"/About-GADIS", exact: true,  name: "Admin", component: AboutTheSystem },
 ]
 
 export default routes
