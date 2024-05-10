@@ -20,23 +20,22 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/logout', 'App\Http\Controllers\api\AuthController@logout');
 });
 
-Route::middleware(['auth:sanctum','AuthAPI'])->group(function() {
+Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/authentication', function() {
         return response()->json(['message'=>'You are Authenticated','status'=>200], 200);
     });
+    Route::get('/getSingleEmployee/{id}', 'App\Http\Controllers\api\AdminController@getSingleEmployee'); 
+    Route::get('/getNotif', 'App\Http\Controllers\api\NotificationController@getNotif');
     Route::post('/updateDetails', 'App\Http\Controllers\api\AuthController@updateDetails');
     Route::post('/passwordChange', 'App\Http\Controllers\api\AuthController@passwordChange');
     Route::post('/uploadProfile', 'App\Http\Controllers\api\AuthController@uploadProfile');
-    
     Route::get('/getTitle', 'App\Http\Controllers\api\AuthController@getTitle');
     Route::get('/inclusiveYears', 'App\Http\Controllers\api\AuthController@inclusiveYears');
     Route::get('/getSignatories', 'App\Http\Controllers\api\AuthController@getSignatories');
     Route::get('/getYears', 'App\Http\Controllers\api\AuthController@getYears');
     Route::get('/getAuth', 'App\Http\Controllers\api\AuthController@getAuth');
     Route::get('/getEmployeeNames', 'App\Http\Controllers\api\AuthController@getEmployeeNames');
-
     //NOTIFICATIONS
-    Route::get('/getNotif', 'App\Http\Controllers\api\NotificationController@getNotif');
     Route::get('/getAllMessages', 'App\Http\Controllers\api\NotificationController@getAllMessages');
     Route::get('/getSingleMessage/{id}', 'App\Http\Controllers\api\NotificationController@getSingleMessage');
     Route::post('/updateMessage', 'App\Http\Controllers\api\NotificationController@updateMessage');
@@ -129,9 +128,10 @@ Route::middleware(['auth:sanctum','AuthAPI'])->group(function() {
     //DASHBOARD
     Route::get('/getEmployeeNumber', 'App\Http\Controllers\api\DashboardController@getEmployeeNumber');
     Route::get('/getSexByDivision', 'App\Http\Controllers\api\DashboardController@getSexByDivision');
+
 });
 
-Route::middleware(['auth:sanctum', 'AdminAPI'])->group(function() {
+Route::middleware(['auth:sanctum'])->group(function() {
     //ADMIN
     Route::get('/getLogins', 'App\Http\Controllers\api\AdminController@getLogins');
     Route::get('/getHistories', 'App\Http\Controllers\api\AdminController@getHistories');
@@ -145,7 +145,6 @@ Route::middleware(['auth:sanctum', 'AdminAPI'])->group(function() {
     Route::get('/getUsers', 'App\Http\Controllers\api\AdminController@getUsers'); 
     Route::get('/getSingleUser/{id}', 'App\Http\Controllers\api\AdminController@getSingleUser');
     Route::get('/getEmployees', 'App\Http\Controllers\api\AdminController@getEmployees'); 
-    Route::get('/getSingleEmployee/{id}', 'App\Http\Controllers\api\AdminController@getSingleEmployee'); 
     Route::get('/getEmployeeWithoutAccnt', 'App\Http\Controllers\api\AdminController@getEmployeeWithoutAccnt'); 
     Route::get('/getActualAndPlannedBeneficiaries', 'App\Http\Controllers\api\AdminController@getActualAndPlannedBeneficiaries'); 
     
