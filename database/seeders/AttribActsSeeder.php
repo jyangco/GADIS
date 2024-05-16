@@ -13,16 +13,6 @@ class AttribActsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('attrib_activities')->insert([
-            [
-                'attrib_title' => 'Undergraduate Scholarship Program'
-            ],
-            [
-                'attrib_title' => 'Accelerated Science and Technology Human Resource Development Program'
-            ],
-            [
-                'attrib_title' => 'Capacity Building Program in Science Education'
-            ]
-        ]);
+       
     }
 }

@@ -13,19 +13,6 @@ class PositionTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('positions')->insert([
-            [ 
-                'position_name' => 'Executive Committee Chair',
-            ],
-            [ 
-                'position_name' => 'TWG Chair',
-            ],
-            [ 
-                'position_name' => 'GAD Secretariat',
-            ],
-            [ 
-                'position_name' => 'GAD Staff',
-            ],
-        ]);
+        
     }
 }

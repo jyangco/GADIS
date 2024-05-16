@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserRoleTableSeeder::class);
         // $this->call(AttribActsSeeder::class);
         // $this->call(AdminUserTableSeeder::class);
-        $this->call(EmployeeTableSeeder::class);
-        $this->call(EmployeeWithAccountSeeder::class);
+        // $this->call(EmployeeTableSeeder::class);
+        // $this->call(EmployeeWithAccountSeeder::class);
         
         // \App\Models\User::factory(10)->create();
         // \App\Models\User::factory()->create([
